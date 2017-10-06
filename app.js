@@ -13,6 +13,7 @@ const path = require("path");
  */
 const app = express();
 
+app.use(express.static("public"));
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
