@@ -70,6 +70,7 @@ module.exports = function(sequelize, Sequelize) {
         allowNull:false
       }
     });
+    House.hasMany(models.Comment);
   };
 
   return House;
