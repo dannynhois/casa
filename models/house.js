@@ -8,6 +8,10 @@ module.exports = function(sequelize, Sequelize) {
     zpid: {
         type: Sequelize.INTEGER
     },
+    // user_id: {
+    //     type: Sequelize.STRING
+    // },
+
 
     address: {
         type: Sequelize.STRING,
