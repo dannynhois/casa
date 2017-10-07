@@ -49,46 +49,25 @@ models.sequelize
     console.log(err, "Something went wrong with the Database Update!");
   });
 
-  
-  /**
+/**
    * Set Handlebars as View Engine
    */
-  var exphbs = require("express-handlebars");
-  app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-  app.set("view engine", "handlebars");
-  
-  /**
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+/**
    * Controllers (route handlers).
    */
-  require("./controllers/home")(app);
-  const authController = require("./controllers/authcontroller");
-  // const userController = require('./controllers/user');
-  // const apiController = require('./controllers/api');
-  // const contactController = require('./controllers/contact');
-
-  /*
+/*
  * Primary app routes.
  */
-app.get("/signup", authController.signup);
-app.get("/signin", authController.signin);
-app.post(
-  "/signup",
-  passport.authenticate("local-signup", {
-    successRedirect: "/dashboard",
-
-    failureRedirect: "/signup"
-  })
-);
-app.post(
-  "/signin",
-  passport.authenticate("local-signin", {
-    successRedirect: "/dashboard",
-
-    failureRedirect: "/signin"
-  })
-);
-app.get("/dashboard", authController.isLoggedIn, authController.dashboard);
-app.get("/logout", authController.logout);
+require("./controllers/home")(app);
+require("./controllers/authcontroller")(app);
+// const authController = require("./controllers/authcontroller");
+// const userController = require('./controllers/user');
+// const apiController = require('./controllers/api');
+// const contactController = require('./controllers/contact');
 
 //load passport strategies
 require("./config/passport.js")(passport, models.user);
