@@ -9,6 +9,8 @@
 var db = require("../models");
 var Zillow = require("node-zillow");
 var middleware = require("./middleware");
+var Scraper = require("image-scraper");
+
 
 module.exports = function(app) {
   /**
@@ -37,7 +39,7 @@ module.exports = function(app) {
 
 
 app.post("/houses", function(req, res) {
-    console.log(req);
+    // console.log(req);
     var parametersSearch = {
         address: req.body.address,
         citystatezip: req.body.city+ ", "+req.body.state+" "+req.body.zip
@@ -47,7 +49,14 @@ var zillow = new Zillow(zwsid);
 
 var house = {};
 zillow.get('GetDeepSearchResults', parametersSearch).then(function(results) {
+
     var resultsString = results.response.results.result;
+
+    // resultsString[0].forEach(key=> {
+    // 	console.log(key);
+    // })
+    
+    console.log("************************ results:" + JSON.stringify(resultsString[0].links[0].homedetails));
     house.address = results.request.address;
     house.citystatezip = results.request.citystatezip;
     house.price = resultsString[0].zestimate[0].amount[0]._;
@@ -55,6 +64,14 @@ zillow.get('GetDeepSearchResults', parametersSearch).then(function(results) {
     house.year = resultsString[0].yearBuilt;
     house.sqft = resultsString[0].finishedSqFt;
     house.bedrooms = resultsString[0].bedrooms;
+    house.link = resultsString[0].links[0].homedetails;
+
+    //SCRAPER CODE
+    var scraper = new Scraper(house.link);
+    scraper.scrape(function(image){
+    	var imgLink = image.address;
+    	console.log(imgLink);
+    })
 
     console.log("call 1" + JSON.stringify(house));
 }).then(function() {
@@ -68,7 +85,8 @@ zillow.get('GetDeepSearchResults', parametersSearch).then(function(results) {
         sqft: house.sqft,
         bedrooms: house.bedrooms,
         yearbuilt: house.yearbuilt,
-        zestimate: house.price
+        zestimate: house.price,
+        link: house.link
     });
     }).then(function(houseData) {
         res.redirect("/dashboard");
