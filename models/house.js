@@ -68,5 +68,13 @@ module.exports = function(sequelize, Sequelize) {
 
   });
 
-    return House;
+  // House.associate = function(models){
+  //   House.belongsTo(models.User,{
+  //     foreignKey:{
+  //       allowNull:false
+  //     }
+  //   });
+  // };
+
+  return House;
 };
