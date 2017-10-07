@@ -17,8 +17,11 @@
     "express-session": "^1.15.6",
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
+    "node-zillow": "^1.0.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^4.13.5"
+    "request": "^2.83.0",
+    "sequelize": "^4.13.5",
+    "xml2js": "^0.4.19"
   }
 }
