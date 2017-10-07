@@ -3,32 +3,35 @@
  * Home page.
  */
 
- /**
+/**
  * Dependencies
  */
 var db = require("../models");
 var Zillow = require("node-zillow");
 
-var exports = (module.exports = {});
-/**
- * GET Home page.
- */
-exports.index = function(req, res){
+module.exports = function(app) {
+  /**
+     * GET Home page.
+     */
+  app.get("/", function(req, res) {
     res.render("index");
-};
+  });
 
-/**
- * GET User page.
- */
-exports.mylist = function(req, res){
-    db.House.findAll({
+  /**
+     * GET User page.
+     */
+  app.get("/user/:id", function(req, res) {
+    db.House
+      .findAll({
         where: {
-            // user_id: req.params.id
-            address:"1903 Bradshaw St"
+          // user_id: req.params.id
+          address: "1903 Bradshaw St"
         }
-    }).then(function(houseData) {
-        res.render('user', {houseData});
-    });
+      })
+      .then(function(houseData) {
+        res.render("user", { houseData });
+      });
+  });
 };
 
 // var db = require("../models");

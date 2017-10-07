@@ -49,27 +49,26 @@ models.sequelize
     console.log(err, "Something went wrong with the Database Update!");
   });
 
-/**
- * Controllers (route handlers).
- */
-const homeController = require("./controllers/home");
-const authController = require("./controllers/authcontroller");
-// const userController = require('./controllers/user');
-// const apiController = require('./controllers/api');
-// const contactController = require('./controllers/contact');
+  
+  /**
+   * Set Handlebars as View Engine
+   */
+  var exphbs = require("express-handlebars");
+  app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+  app.set("view engine", "handlebars");
+  
+  /**
+   * Controllers (route handlers).
+   */
+  require("./controllers/home")(app);
+  const authController = require("./controllers/authcontroller");
+  // const userController = require('./controllers/user');
+  // const apiController = require('./controllers/api');
+  // const contactController = require('./controllers/contact');
 
-/**
- * Set Handlebars as View Engine
- */
-var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-/*
+  /*
  * Primary app routes.
  */
-app.get("/", homeController.index);
-app.get("/user/:id", homeController.mylist);
 app.get("/signup", authController.signup);
 app.get("/signin", authController.signin);
 app.post(
