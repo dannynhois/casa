@@ -28,9 +28,9 @@ module.exports = function(app) {
       failureRedirect: "/signin"
     })
   );
-  app.get("/dashboard", isLoggedIn, function(req, res) {
-    res.render("dashboard");
-  });
+  // app.get("/dashboard", isLoggedIn, function(req, res) {
+  //   res.render("dashboard");
+  // });
 
   app.get("/logout", function(req, res) {
     req.session.destroy(function(err) {
@@ -40,7 +40,7 @@ module.exports = function(app) {
 };
 
 //check to see if logged in middelware
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect("/signin");
-}
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated()) return next();
+//   res.redirect("/signin");
+// }

@@ -8,6 +8,7 @@
  */
 var db = require("../models");
 var Zillow = require("node-zillow");
+var middleware = require("./middleware");
 
 module.exports = function(app) {
   /**
@@ -20,7 +21,7 @@ module.exports = function(app) {
   /**
      * GET User page.
      */
-  app.get("/user/:id", function(req, res) {
+  app.get("/dashboard", middleware.isLoggedIn, function(req, res) {
     db.House
       .findAll({
         where: {
@@ -30,7 +31,7 @@ module.exports = function(app) {
       })
       .then(function(houseData) {
       	if(!houseData){
-      		
+
       	}
         res.render("user", { houseData });
       });
