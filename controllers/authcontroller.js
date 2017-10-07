@@ -1,7 +1,7 @@
 //load passport strategies
 const passport = require("passport");
 const models = require("../models");
-require("../config/passport.js")(passport, models.user);
+require("../config/passport.js")(passport, models.User);
 
 module.exports = function(app) {
   app.get("/signup", function(req, res) {

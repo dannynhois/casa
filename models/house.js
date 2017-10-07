@@ -8,12 +8,8 @@ module.exports = function(sequelize, Sequelize) {
     zpid: {
         type: Sequelize.INTEGER
     },
-    // user_id: {
-    //     type: Sequelize.STRING
-    // },
-
-
-    address: {
+ 
+     address: {
         type: Sequelize.STRING,
         notEmpty: true
     },
@@ -68,13 +64,13 @@ module.exports = function(sequelize, Sequelize) {
 
   });
 
-  // House.associate = function(models){
-  //   House.belongsTo(models.User,{
-  //     foreignKey:{
-  //       allowNull:false
-  //     }
-  //   });
-  // };
+  House.associate = function(models){
+    House.belongsTo(models.User,{
+      foreignKey:{
+        allowNull:false
+      }
+    });
+  };
 
   return House;
 };

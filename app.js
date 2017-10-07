@@ -70,11 +70,11 @@ require("./controllers/authcontroller")(app);
 // const contactController = require('./controllers/contact');
 
 //load passport strategies
-require("./config/passport.js")(passport, models.user);
+require("./config/passport.js")(passport, models.User);
 
 //serialize
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, User.id);
 });
 
 // deserialize user

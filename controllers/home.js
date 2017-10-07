@@ -29,6 +29,9 @@ module.exports = function(app) {
         }
       })
       .then(function(houseData) {
+      	if(!houseData){
+      		
+      	}
         res.render("user", { houseData });
       });
   }); //closes get user
@@ -42,10 +45,7 @@ app.post("/user/:id", function(req, res) {
     };
 var zwsid = "X1-ZWz1fx6rub800b_55f1z";
 var zillow = new Zillow(zwsid);
-// var parametersSearch = {
-//     address: "1903 Bradshaw St",
-//     citystatezip: "Houston, TX 77008"
-// };
+
 var house = {};
 zillow.get('GetDeepSearchResults', parametersSearch).then(function(results) {
     var resultsString = results.response.results.result;
@@ -60,8 +60,9 @@ zillow.get('GetDeepSearchResults', parametersSearch).then(function(results) {
     console.log("call 1" + JSON.stringify(house));
 }).then(function() {
     console.log("posted house "+house);
+    console.log(req.user);
     db.House.create({
-        user_id: "test5",
+        UserId: req.user.id,
         address: house.address,
         citystatezip: house.citystatezip,
         zpid: house.zpid,
