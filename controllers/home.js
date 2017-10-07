@@ -22,23 +22,21 @@ module.exports = function(app) {
      * GET User page.
      */
   app.get("/dashboard", middleware.isLoggedIn, function(req, res) {
+    console.log(req.params.id);
     db.House
       .findAll({
         where: {
-          // user_id: req.params.id
-          address: "1903 Bradshaw St"
+          UserId: req.params.id 
         }
       })
       .then(function(houseData) {
-      	if(!houseData){
-
-      	}
+      	
         res.render("user", { houseData });
       });
   }); //closes get user
 
 
-app.post("/user/:id", function(req, res) {
+app.post("/dashboard", function(req, res) {
     console.log(req);
     var parametersSearch = {
         address: req.body.address,

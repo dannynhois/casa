@@ -41,7 +41,9 @@ var models = require("./models");
 
 //Sync Database
 models.sequelize
-  .sync()
+  .sync({
+    force:true
+  })
   .then(function() {
     console.log("Nice! Database looks fine");
   })
