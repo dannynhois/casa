@@ -16,6 +16,7 @@
     "express": "^4.16.1",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "get-image-urls": "^1.0.4",
     "image-scraper": "^0.2.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
