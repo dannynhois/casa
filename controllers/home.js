@@ -9,16 +9,16 @@ exports.index = (req, res) => {
 };
 
 
-var db = require("../models");
+// var db = require("../models");
 
-app.get("/user/:id", function(req,res) {
-	db.House.findAll({
-		where:{
-			user_id: req.params.id;
-		}
-	})
+// app.get("/user/:id", function(req,res) {
+// 	db.House.findAll({
+// 		where:{
+// 			user_id: req.params.id;
+// 		}
+// 	})
 
-	res.render('user', {
+// 	res.render('user', {
 
-	})
-})
+// 	})
+// })
