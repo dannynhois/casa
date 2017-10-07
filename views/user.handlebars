@@ -1,7 +1,7 @@
 <h1> Saved Houses </h1>
 
 <ul>
-	{{each houseData}}
+	{{#each houseData}}
 		<li>
 			{{this.address}}
 			<ul>
@@ -10,4 +10,5 @@
 				<li>{{this.bedrooms}}</li>
 			</ul>
 		</li>
+	{{/each}}
 </ul>

@@ -69,6 +69,7 @@ app.set("view engine", "handlebars");
  * Primary app routes.
  */
 app.get("/", homeController.index);
+app.get("/user/:id", homeController.mylist);
 app.get("/signup", authController.signup);
 app.get("/signin", authController.signin);
 app.post(
