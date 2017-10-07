@@ -45,7 +45,7 @@ exports.mylist = function(req, res){
 // app.post("/user/:id", function(req, res) {
 // //     var parametersSearch = {
 // //         address: req.body.address,
-// //         citystatezip: req.body.citystatezip
+// //         citystatezip: req.body.city+ ", "+req.body.state+" "+zip
 // //     };
 // var zwsid = "X1-ZWz1fx6rub800b_55f1z";
 // var zillow = new Zillow(zwsid);
