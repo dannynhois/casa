@@ -1,6 +1,5 @@
 var express = require("express");
 var request = require("request");
-// var parseString = require("xml2js").parseString;
 var zwsid = "X1-ZWz1fx6rub800b_55f1z"
 var Zillow = require("node-zillow");
 var zillow = new Zillow(zwsid);
@@ -12,7 +11,6 @@ var address = "1903 Bradshaw St";
 var citystatezip = "Houston, TX 77008";
 
 var house = {}
-
 
 var parametersSearch = {
 	address:address,
