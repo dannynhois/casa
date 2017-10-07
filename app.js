@@ -68,7 +68,7 @@ app.set("view engine", "handlebars");
 /*
  * Primary app routes.
  */
-app.get("/", homeController.index);
+//app.get("/", homeController.index);
 app.get("/signup", authController.signup);
 app.get("/signin", authController.signin);
 app.post(
@@ -85,7 +85,7 @@ app.post(
     successRedirect: "/dashboard",
 
     failureRedirect: "/signin"
-  })
+  });
 );
 app.get("/dashboard", authController.isLoggedIn, authController.dashboard);
 app.get("/logout", authController.logout);
