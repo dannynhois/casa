@@ -41,7 +41,12 @@ var models = require("./models");
 
 //Sync Database
 models.sequelize
-  .sync()
+  .sync(
+  // {
+  //   force:true
+  // }
+  //run this again if we change db setup
+  )
   .then(function() {
     console.log("Nice! Database looks fine");
   })
@@ -50,52 +55,31 @@ models.sequelize
   });
 
 /**
- * Controllers (route handlers).
- */
-const homeController = require("./controllers/home");
-const authController = require("./controllers/authcontroller");
-// const userController = require('./controllers/user');
-// const apiController = require('./controllers/api');
-// const contactController = require('./controllers/contact');
-
-/**
- * Set Handlebars as View Engine
- */
+   * Set Handlebars as View Engine
+   */
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+/**
+   * Controllers (route handlers).
+   */
 /*
  * Primary app routes.
  */
-//app.get("/", homeController.index);
-app.get("/signup", authController.signup);
-app.get("/signin", authController.signin);
-app.post(
-  "/signup",
-  passport.authenticate("local-signup", {
-    successRedirect: "/dashboard",
-
-    failureRedirect: "/signup"
-  })
-);
-app.post(
-  "/signin",
-  passport.authenticate("local-signin", {
-    successRedirect: "/dashboard",
-
-    failureRedirect: "/signin"
-  });
-);
-app.get("/dashboard", authController.isLoggedIn, authController.dashboard);
-app.get("/logout", authController.logout);
+require("./controllers/home")(app);
+require("./controllers/authcontroller")(app);
+// const authController = require("./controllers/authcontroller");
+// const userController = require('./controllers/user');
+// const apiController = require('./controllers/api');
+// const contactController = require('./controllers/contact');
 
 //load passport strategies
-require("./config/passport.js")(passport, models.user);
+require("./config/passport.js")(passport, models.User);
 
 //serialize
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, User.id);
 });
 
 // deserialize user

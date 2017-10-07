@@ -8,8 +8,8 @@ module.exports = function(sequelize, Sequelize) {
     zpid: {
         type: Sequelize.INTEGER
     },
-
-    address: {
+ 
+     address: {
         type: Sequelize.STRING,
         notEmpty: true
     },
@@ -64,5 +64,14 @@ module.exports = function(sequelize, Sequelize) {
 
   });
 
-    return House;
+  House.associate = function(models){
+    House.belongsTo(models.User,{
+      foreignKey:{
+        allowNull:false
+      }
+    });
+    House.hasMany(models.Comment);
+  };
+
+  return House;
 };

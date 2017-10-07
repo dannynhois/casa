@@ -1,0 +1,29 @@
+<h1> Saved Houses </h1>
+
+<ul>
+	{{#each houseData}}
+		<li>
+			{{this.address}}
+			<ul>
+				<li>{{this.zestimate}}</li>
+				<li>{{this.sqft}}</li>
+				<li>{{this.bedrooms}}</li>
+			</ul>
+		</li>
+	{{/each}}
+</ul>
+
+<h2>Add a favorite house</h2>
+    <form class="create-update-form" action="/houses" method="POST">
+        <div class="form-group">
+            <label for="ca">Address:</label>
+            <input type="text" id="address" name="address">
+            <label for="ca">City:</label>
+            <input type="text" id="city" name="city">
+            <label for="ca">State:</label>
+            <input type="text" id="state" name="state">
+            <label for="ca">Zip:</label>
+            <input type="text" id="zip" name="zip">
+        </div>
+        <button type="submit">Add House</button>
+    </form>

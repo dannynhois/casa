@@ -1,25 +1,46 @@
-var exports = (module.exports = {});
+//load passport strategies
+const passport = require("passport");
+const models = require("../models");
+require("../config/passport.js")(passport, models.User);
 
-exports.signup = function(req, res) {
-  res.render("signup");
-};
+module.exports = function(app) {
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
 
-exports.signin = function(req, res) {
-  res.render("signin");
-};
+  app.get("/signin", function(req, res) {
+    res.render("signin");
+  });
 
-exports.dashboard = function(req, res) {
-  res.render("dashboard");
-};
+  app.post(
+    "/signup",
+    passport.authenticate("local-signup", {
+      successRedirect: "/dashboard",
 
-exports.logout = function(req, res) {
-  req.session.destroy(function(err) {
-    res.redirect("/");
+      failureRedirect: "/signup"
+    })
+  );
+  app.post(
+    "/signin",
+    passport.authenticate("local-signin", {
+      successRedirect: "/dashboard",
+
+      failureRedirect: "/signin"
+    })
+  );
+  // app.get("/dashboard", isLoggedIn, function(req, res) {
+  //   res.render("dashboard");
+  // });
+
+  app.get("/logout", function(req, res) {
+    req.session.destroy(function(err) {
+      res.redirect("/");
+    });
   });
 };
 
 //check to see if logged in middelware
-exports.isLoggedIn = function(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect("/signin");
-};
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated()) return next();
+//   res.redirect("/signin");
+// }
