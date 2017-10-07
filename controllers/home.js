@@ -22,11 +22,11 @@ module.exports = function(app) {
      * GET User page.
      */
   app.get("/dashboard", middleware.isLoggedIn, function(req, res) {
-    console.log(req.params.id);
+    console.log("***********user Id: "+req.user.id);
     db.House
       .findAll({
         where: {
-          UserId: req.params.id 
+          UserId: req.user.id 
         }
       })
       .then(function(houseData) {
@@ -36,7 +36,7 @@ module.exports = function(app) {
   }); //closes get user
 
 
-app.post("/dashboard", function(req, res) {
+app.post("/houses", function(req, res) {
     console.log(req);
     var parametersSearch = {
         address: req.body.address,
@@ -71,7 +71,7 @@ zillow.get('GetDeepSearchResults', parametersSearch).then(function(results) {
         zestimate: house.price
     });
     }).then(function(houseData) {
-        res.redirect("/user/:id");
+        res.redirect("/dashboard");
     });
 }); //closes post
 }; //closes module exports
