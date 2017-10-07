@@ -19,7 +19,7 @@
 .logo{ 
     font-family: 'Archivo Black', sans-serif;
     font-size: 88px;
-    text-align: left;
+    text-align: center;
 }
 
 .tagline{
@@ -36,5 +36,24 @@
     -o-background-size: cover;
 }
 
+#description{
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgba(220,220,220,0.8);
+  margin-right: 50px;
+}
+
+#paragraph{
+    padding: 12px;
+    margin-bottom: 0px;
+}
+
+.section3{
+    font-family: 'Open Sans', sans-serif;
+    background: url("../images/old-door.jpg") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
 
 
