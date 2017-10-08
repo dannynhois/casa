@@ -26,34 +26,47 @@ module.exports = function(app) {
 		console.log("***********user Id: " + req.user.id);
 
 		db.User.findAll({
-			attributes:['user_choices']
-		},{
 			where:{
 				id: req.user.id
 			}
+		},{
+			attributes:['user_choices']
 		}).then(function(choices){
-			choicesArray = (choices[0].dataValues.user_choices).split(",");
-			console.log(choicesArray);
-			   
 			houseAttributes = ['id','zpid','address','sqft','bedrooms','yearbuilt','zestimate'];
+			console.log(choices[0].dataValues.user_choices);
+
+			if(choices[0].dataValues.user_choices){
+			var choicesArray = (choices[0].dataValues.user_choices).split("-");
+			console.log(choicesArray);
 			houseAttributes.push.apply(houseAttributes,choicesArray);
+			};   
+			
 			console.log(houseAttributes);
+			console.log("***********user Id: " + req.user.id);
+
 			db.House.findAll({
-				attributes:houseAttributes
-			},{
 		        where: {
 		            UserId: req.user.id
 		  		}
-		    }).then(function(houseData) {
-
-
-		    	var houseData2 = {
-		    		house: houseData,
-		    		selectionTitles:choicesArrayCaps,
-		    		selectionData:choicesArray
-		    	}
-		    	console.log(houseData2);
-		        res.render("user", { houseData2 });
+		    },{
+				attributes:houseAttributes
+			}).then(function(houseData) {
+		    	var options = ['kitchen','garage', 'remodel','schools','study','features','location','tax','sizes'];
+		    	for (i=0;i<options.length;i++){
+		    		if (choicesArray){
+			    		if (!choicesArray.includes(options[i])){
+			    			delete houseData.options[i];
+			    		}
+			    	}
+			    }
+		    	console.log(houseData);
+		    	// var houseData2 = {
+		    	// 	house: houseData,
+		    	// 	selectionTitles:choicesArrayCaps,
+		    	// 	selectionData:choicesArray
+		    	// }
+		    	// console.log(houseData2);
+		        res.render("user", { houseData });
 		    });
 		});		
 	}); //closes get user
@@ -74,13 +87,12 @@ module.exports = function(app) {
 	    zillow.get('GetDeepSearchResults', parametersSearch).then(function(results) {
 
 	        var resultsString = results.response.results.result;
-
 	        console.log("************************ results:" + JSON.stringify(resultsString[0].links[0].homedetails));
 	        house.address = results.request.address;
 	        house.citystatezip = results.request.citystatezip;
 	        house.price = resultsString[0].zestimate[0].amount[0]._;
 	        house.zpid = resultsString[0].zpid;
-	        house.year = resultsString[0].yearBuilt;
+	        house.yearbuilt = resultsString[0].yearBuilt;
 	        house.sqft = resultsString[0].finishedSqFt;
 	        house.bedrooms = resultsString[0].bedrooms;
 	        house.link = resultsString[0].links[0].homedetails[0];
@@ -108,10 +120,10 @@ module.exports = function(app) {
 /**
 * Put Users page (selected values).
 */
-	app.put("/usersettings", function(req,res){
+	app.put("/usersettings", middleware.isLoggedIn, function(req,res){
 		var userChoices = (Object.keys(req.body));
 		console.log(userChoices);
-		var stringChoices = userChoices.toString();
+		var stringChoices = (userChoices.toString()).replace(/,/g, "-");
 		console.log(stringChoices);
 		//this is what we store to database
 		db.User.update({
