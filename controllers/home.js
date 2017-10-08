@@ -5,21 +5,19 @@ var db = require("../models");
 var Zillow = require("node-zillow");
 var middleware = require("./middleware");
 
-
 module.exports = function(app) {
-/**
+  /**
  * GET Home page.
  */
-	app.get("/", function(req, res) {
-		res.render("index");
-	});
+  app.get("/", function(req, res) {
+    res.render("index");
+  });
 
+  app.get("/settings", function(req, res) {
+    res.render("settings");
+  });
 
-	app.get("/settings",function(req,res){
-		res.render("settings")
-	});
-
-/**
+  /**
 * GET User page (see all houses). will need to update this to show selected columns
 */
 	app.get("/dashboard", middleware.isLoggedIn, function(req, res) {

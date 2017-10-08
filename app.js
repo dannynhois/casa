@@ -40,17 +40,14 @@ app.use(passport.session()); // persistent login sessions
 //method override for put and delete
 app.use(methodOverride("_method"));
 
-
 //Models
 var models = require("./models");
 
 //Sync Database
 models.sequelize
   .sync(
-  // {
-  //   force:true
-  // }
-  //run this again if we change db setup
+    // { force: true }
+    //run this again if we change db setup
   )
   .then(function() {
     console.log("Nice! Database looks fine");
@@ -74,6 +71,7 @@ app.set("view engine", "handlebars");
  */
 require("./controllers/home")(app);
 require("./controllers/authcontroller")(app);
+require("./controllers/comment")(app);
 // const authController = require("./controllers/authcontroller");
 // const userController = require('./controllers/user');
 // const apiController = require('./controllers/api');
