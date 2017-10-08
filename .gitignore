@@ -3,3 +3,4 @@ DS_Store
 *.gdoc
 .env
 .DS_Store
+*.gsheet
