@@ -20,6 +20,7 @@
     "get-image-urls": "^1.0.4",
     "image-scraper": "^0.2.0",
     "lodash": "^4.17.4",
+    "method-override": "^2.3.10",
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
     "node-zillow": "^1.0.1",
