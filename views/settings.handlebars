@@ -1,14 +1,46 @@
-<h2> Select up to 3 house note fields to add to your comparison tool</h2>
 
-<form action="/usersettings?_method=PUT" method="POST">
-  <input type="checkbox" name="kitchen"> Kitchen<br>
-  <input type="checkbox" name="garage"> Garage<br>
-  <input type="checkbox" name="remodel"> Remodel Work Needed<br>
-  <input type="checkbox" name="schools"> Schools<br>
-  <input type="checkbox" name="study"> Study<br>
-  <input type="checkbox" name="features"> Special Features<br>
-  <input type="checkbox" name="location"> Location<br>
-  <input type="checkbox" name="tax"> Tax Rates<br>
-  <input type="checkbox" name="sizes"> Room Sizes<br>
-  <input type="submit" value="Submit">
-</form>
+<div class="row row1">
+  <div class="col"></div>
+  <div class="col" id="selectFields">
+    <h2> Select up to 3 house note fields to add to your comparison tool</h2>
+      <form action="/usersettings?_method=PUT" method="POST">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="kitchen">Kitchen
+        </label><br>
+         <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="garage">Garage
+        </label><br>
+         <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="remodel">Remodel Work Needed
+        </label><br>
+         <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="schools">Schools
+        </label><br>
+         <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="study">Study
+        </label><br>
+         <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="features">Special Features
+        </label><br>
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="location">Location
+        </label><br>
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="tax">Tax Rates
+        </label><br>
+         <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="sizes">Room Sizes
+        </label><br>
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  <div class="col"></div>
+</div>
+
+
+
+
+
+
