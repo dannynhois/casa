@@ -59,7 +59,10 @@
 
 
 /*SIGN IN SIGN UP CSS*/
-
+#colForLogin{
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 185px;
+}
 
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
