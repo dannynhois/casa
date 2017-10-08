@@ -46,10 +46,61 @@
           <h3><span>Address:</span> {{this.address}} </h3>
         </div>
         <div>
-          <h3><span>Number of bedrooms:</span> {{this.bedrooms}}</h3>
+          <h3><span>Price:</span> {{this.zestimate}}</h3>
+        </div>
+        <div>
+          <h3><span>Sq Ft:</span> {{this.sqft}}</h3>
+        </div>
+        <div>
+          <h3><span>Bedrooms:</span> {{this.bedrooms}}</h3>
         </div>
 
-        
+        {{#if this.kitchen}}
+        <div>
+          <h3><span>Kitchen:</span> {{this.kitchen}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.garage}}
+        <div>
+          <h3><span>Garage:</span> {{this.garage}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.remodel}}
+        <div>
+          <h3><span>Remodel:</span> {{this.remodel}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.schools}}
+        <div>
+          <h3><span>Schools:</span> {{this.schools}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.study}}
+        <div>
+          <h3><span>Study:</span> {{this.study}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.features}}
+        <div>
+          <h3><span>Features:</span> {{this.features}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.location}}
+        <div>
+          <h3><span>Location:</span> {{this.location}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.tax}}
+        <div>
+          <h3><span>Tax:</span> {{this.tax}}</h3>
+        </div>
+        {{/if}}
+        {{#if this.sizes}}
+        <div>
+          <h3><span>Sizes:</span> {{this.sizes}}</h3>
+        </div>
+        {{/if}}
+
 
         <!-- User comments display  -->
         {{#if houseData.comment}}

@@ -28,11 +28,11 @@ module.exports = function(app) {
 		db.User.findAll({
 			where:{
 				id: req.user.id
-			}
-		},{
+			},
 			attributes:['user_choices']
 		}).then(function(choices){
-			houseAttributes = ['id','zpid','address','sqft','bedrooms','yearbuilt','zestimate'];
+			//if we want to add more to the list shown in handlebars, add here
+			houseAttributes = ['address','zestimate','sqft','bedrooms'];
 			console.log(choices[0].dataValues.user_choices);
 
 			if(choices[0].dataValues.user_choices){
@@ -47,29 +47,11 @@ module.exports = function(app) {
 			db.House.findAll({
 		        where: {
 		            UserId: req.user.id
-		  		}
-		    },{
-				attributes:houseAttributes
+		  		},
+				attributes: houseAttributes
 			}).then(function(houseData) {
 				console.log(houseData);
-		    	var options = ['kitchen','garage', 'remodel','schools','study','features','location','tax','sizes'];
-		    	// for (i=0;i<houseData.length;i++){
-		    	// 	for (j=0;j<options.length;j++){
-			    // 		if (choicesArray){
-				   //  		if (!choicesArray.includes(options[j])){
-				   //  			delete houseData.dataValues.(options[j]);
-				   //  		}
-				   //  	}
-			    // 	}
-		    	// }
 		    	
-		    	// console.log(houseData);
-		    	// var houseData2 = {
-		    	// 	house: houseData,
-		    	// 	selectionTitles:choicesArrayCaps,
-		    	// 	selectionData:choicesArray
-		    	// }
-		    	// console.log(houseData2);
 		        res.render("dashboard", { houseData });
 		    });
 		});		
