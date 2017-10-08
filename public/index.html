@@ -37,10 +37,74 @@
 			</div>
 		</div>
 	</div><!--closes second section of pagePiling-->
-	<div class="section section3">Some section</div> <!--closes third section of pagePiling-->
-</div>
 
-		
+
+	<div class="section section3">
+				<div class="login-wrap">
+			    <div class="login-html">
+			        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+			        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+			        <div class="login-form">
+
+								<!-- SIGN IN FORM -->
+			            <form class="sign-in-htm" method = "post" action = "/signin">
+			                <div class="group">
+			                    <label for="user" class="label" >Email</label>
+			                    <input id="user" type="text" class="input" name="email" required = "required" />
+			                </div>
+			                <div class="group">
+			                    <label for="pass" class="label">Password</label>
+			                    <input id="pass" type="password" class="input" data-type="password" name="password" placeholder="Password" required="required"/>
+			                </div>
+			                <div class="group">
+			                    <input id="check" type="checkbox" class="check" checked>
+			                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
+			                </div>
+			                <div class="group">
+			                    <input type="submit" class="button">
+			                </div>
+			                <div class="hr"></div>
+			                <div class="foot-lnk">
+			                    <a href="#forgot">Forgot Password?</a>
+			                </div>
+			            </form>
+
+									<!-- SIGN UP FORM -->
+			            <form class="sign-up-htm" method = "post" action = "/signup">
+			                <div class="group">
+			                    <label for="user" class="label">First Name</label>
+			                    <input id="user" type="text" class="input"  name="firstname" placeholder="First Name" required="required">
+			                </div>
+			                <div class="group">
+			                    <label for="lastname" class="label">Last Name</label>
+			                    <input id="pass" type="text" class="input" name="lastname" placeholder="Last Name" required="required">
+			                </div>
+											<div class="group">
+			                    <label for="pass" class="label">Email Address</label>
+			                    <input id="pass" type="email" class="input" name="email" placeholder="Email" required="required" >
+			                </div>
+			                <div class="group">
+			                    <label for="pass" class="label">Password</label>
+			                    <input id="pass" type="password" class="input" data-type="password" name="password" placeholder="Password" required="required">
+			                </div>
+			                <div class="group">
+			                    <input type="submit" class="button">
+			                </div>
+			                <div class="hr"></div>
+			                <div class="foot-lnk">
+			                    <label for="tab-1">Already Member?</a>
+			                </div>
+			            </form>
+			        </div>
+			    </div>
+			</div>
+
+	</div> <!--closes third section of pagePiling-->
+
+
+</div> <!--PAGEPILING DIV CLOSE -->
+
+
 
 	</div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"

@@ -1,9 +1,4 @@
 /**
- * GET /
- * Home page.
- */
-
-/**
  * Dependencies
  */
 var db = require("../models");
@@ -60,12 +55,8 @@ module.exports = function(app) {
 		    	console.log(houseData2);
 		        res.render("user", { houseData2 });
 		    });
-		});
-
-
-
-		
-		}); //closes get user
+		});		
+	}); //closes get user
 
 /**
 * Post Houses page (added house).
@@ -131,12 +122,6 @@ module.exports = function(app) {
 			res.redirect("/dashboard")
 		});
 
-		
-
-
-
 	});//closes user post
 
 }; //closes module exports
-
-
