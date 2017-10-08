@@ -1,16 +1,20 @@
 <h1> Saved Houses </h1>
 
 <ul>
-	{{#each houseData}}
+	{{#each houseData2.house}}
 		<li>
 			{{this.address}}
 			<ul>
-				<li>{{this.zestimate}}</li>
-				<li>{{this.sqft}}</li>
-				<li>{{this.bedrooms}}</li>
+				<li>Price: ${{this.zestimate}}</li>
+				<li>Sq Ft: {{this.sqft}}</li>
+				<li>Bedrooms: {{this.bedrooms}}</li>
+                {{#each houseData2.selectionTitles}}
+                    <li>{{this}} : </li>
+                {{/each}}
 			</ul>
 		</li>
-	{{/each}}
+	{{/each}} 
+    
 </ul>
 
 <h2>Add a favorite house</h2>

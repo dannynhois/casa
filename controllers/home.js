@@ -29,16 +29,42 @@ module.exports = function(app) {
 */
 	app.get("/dashboard", middleware.isLoggedIn, function(req, res) {
 		console.log("***********user Id: " + req.user.id);
-		db.House
-		    .findAll({
+
+		db.User.findAll({
+			attributes:['user_choices']
+		},{
+			where:{
+				id: req.user.id
+			}
+		}).then(function(choices){
+			choicesArray = (choices[0].dataValues.user_choices).split(",");
+			console.log(choicesArray);
+			   
+			houseAttributes = ['id','zpid','address','sqft','bedrooms','yearbuilt','zestimate'];
+			houseAttributes.push.apply(houseAttributes,choicesArray);
+			console.log(houseAttributes);
+			db.House.findAll({
+				attributes:houseAttributes
+			},{
 		        where: {
 		            UserId: req.user.id
-		  		        }
-		    })
-		    .then(function(houseData) {
+		  		}
+		    }).then(function(houseData) {
 
-		        res.render("user", { houseData });
+
+		    	var houseData2 = {
+		    		house: houseData,
+		    		selectionTitles:choicesArrayCaps,
+		    		selectionData:choicesArray
+		    	}
+		    	console.log(houseData2);
+		        res.render("user", { houseData2 });
 		    });
+		});
+
+
+
+		
 		}); //closes get user
 
 /**
@@ -103,10 +129,9 @@ module.exports = function(app) {
 			id:req.user.id
 		}}).then(function(dbUser){
 			res.redirect("/dashboard")
-		})
+		});
 
-		var arrayChoices = stringChoices.split(",");
-		console.log(arrayChoices);
+		
 
 
 

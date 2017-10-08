@@ -31,34 +31,31 @@ module.exports = function(sequelize, Sequelize) {
         type: Sequelize.STRING
 
     },
-    optional1:{
+    kitchen:{
       type:Sequelize.STRING
     },
-    optional2:{
+    garage:{
       type:Sequelize.STRING
     },
-    optional3:{
+    remodel:{
       type:Sequelize.STRING
     },
-    optional4:{
+    schools:{
       type:Sequelize.STRING
     },
-    optional5:{
+    study:{
       type:Sequelize.STRING
     },
-    optional6:{
+    features:{
       type:Sequelize.STRING
     },
-    optional7:{
+    location:{
       type:Sequelize.STRING
     },
-    optional8:{
+    tax:{
       type:Sequelize.STRING
     },
-    optional9:{
-      type:Sequelize.STRING
-    },
-    optional10:{
+    sizes:{
       type:Sequelize.STRING
     }
 
