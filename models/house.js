@@ -24,7 +24,7 @@ module.exports = function(sequelize, Sequelize) {
     },
 
     yearbuilt: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
     },
 
     zestimate: {

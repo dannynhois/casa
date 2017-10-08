@@ -51,22 +51,26 @@ module.exports = function(app) {
 		    },{
 				attributes:houseAttributes
 			}).then(function(houseData) {
+				console.log(houseData);
 		    	var options = ['kitchen','garage', 'remodel','schools','study','features','location','tax','sizes'];
-		    	for (i=0;i<options.length;i++){
-		    		if (choicesArray){
-			    		if (!choicesArray.includes(options[i])){
-			    			delete houseData.options[i];
-			    		}
-			    	}
-			    }
-		    	console.log(houseData);
+		    	// for (i=0;i<houseData.length;i++){
+		    	// 	for (j=0;j<options.length;j++){
+			    // 		if (choicesArray){
+				   //  		if (!choicesArray.includes(options[j])){
+				   //  			delete houseData.dataValues.(options[j]);
+				   //  		}
+				   //  	}
+			    // 	}
+		    	// }
+		    	
+		    	// console.log(houseData);
 		    	// var houseData2 = {
 		    	// 	house: houseData,
 		    	// 	selectionTitles:choicesArrayCaps,
 		    	// 	selectionData:choicesArray
 		    	// }
 		    	// console.log(houseData2);
-		        res.render("user", { houseData });
+		        res.render("dashboard", { houseData });
 		    });
 		});		
 	}); //closes get user
@@ -92,7 +96,7 @@ module.exports = function(app) {
 	        house.citystatezip = results.request.citystatezip;
 	        house.price = resultsString[0].zestimate[0].amount[0]._;
 	        house.zpid = resultsString[0].zpid;
-	        house.yearbuilt = resultsString[0].yearBuilt;
+	        // house.yearbuilt = resultsString[0].yearBuilt;
 	        house.sqft = resultsString[0].finishedSqFt;
 	        house.bedrooms = resultsString[0].bedrooms;
 	        house.link = resultsString[0].links[0].homedetails[0];
@@ -108,7 +112,7 @@ module.exports = function(app) {
 	            zpid: house.zpid,
 	            sqft: house.sqft,
 	            bedrooms: house.bedrooms,
-	            yearbuilt: house.yearbuilt,
+	            // yearbuilt: house.yearbuilt,
 	            zestimate: house.price,
 	            link: house.link
 	        });
