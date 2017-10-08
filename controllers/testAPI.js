@@ -32,6 +32,9 @@ app.get("/", (req, res) => {
     //pass a url and scraper returns an array of image links. first is undefined for some reason
     var a = scraper.scape(url, (x)=>{
         console.log('a-url: ',x);
+        console.log(JSON.stringify(x));
+        console.log(JSON.parse(JSON.stringify(x)));
+
     });
 
 
