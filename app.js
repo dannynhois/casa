@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const passport = require("passport");
 const session = require("express-session");
 const path = require("path");
+const methodOverride = require("method-override");
 
 /**
  * Create Express server.
@@ -36,15 +37,19 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+//method override for put and delete
+app.use(methodOverride("_method"));
+
+
 //Models
 var models = require("./models");
 
 //Sync Database
 models.sequelize
   .sync(
-  // {
-  //   force:true
-  // }
+  {
+    force:true
+  }
   //run this again if we change db setup
   )
   .then(function() {

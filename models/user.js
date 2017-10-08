@@ -43,7 +43,11 @@ module.exports = function(sequelize, Sequelize) {
     status: {
       type: Sequelize.ENUM("active", "inactive"),
       defaultValue: "active"
-    }
+    },
+    user_choices: {
+      type: Sequelize.STRING
+    },
+    
   });
 
   User.associate = function(models){
