@@ -1,17 +1,49 @@
 <h1> Saved Houses </h1>
 
-<ul>
-	{{#each houseData}}
-		<li>
-			{{this.address}}
-			<ul>
-				<li>{{this.zestimate}}</li>
-				<li>{{this.sqft}}</li>
-				<li>{{this.bedrooms}}</li>
-			</ul>
-		</li>
-	{{/each}}
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link disabled" href="/logout">Logout</a>
+  </li>
+	<li class="nav-item">
+    <a class="nav-link disabled" href="/dashboard">Dashboard</a>
+  </li>
 </ul>
+
+<div class = "container">
+  <div class = "row">
+
+<!-- User House picks -->
+{{#each houseData}}
+<!-- first column -->
+    <div class = "col">
+    	<section id="content">
+
+          <div>
+            <br>
+    				<img src = "https://s12.favim.com/610/160211/diy-projects-ice-cream-sticks-kid-crafts-diy-kid-crafts-Favim.com-3982097.jpg">
+    			</div>
+          <div>
+    				<h3> {{this.sqft}}</h3>
+    			</div>
+    			<div>
+    				<h3 > {{this.bedrooms}}</h3>
+    			</div>
+
+    			<div>
+    				<h3 >hello  {{this.address}} </h3>
+    			</div>
+				</div>
+
+				{{#if houseData.comment}} <!-- checking if there is user comment in DataBase -->
+					{{#each houseData}}
+						<div id = "wrapper">
+							<form action = "/dashboard" method = "post">
+								<p> {{house.comment}} </p>
+							</form>
+						</div><br>
+					{{/each}} <!--end of user comment display -->
+				{{/if}} <!-- end
+	{{/each}}
 
 <h2>Add a favorite house</h2>
     <form class="create-update-form" action="/houses" method="POST">
@@ -27,3 +59,5 @@
         </div>
         <button type="submit">Add House</button>
     </form>
+	</div>
+</div>

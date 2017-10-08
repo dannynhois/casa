@@ -1,68 +1,55 @@
-<!DOCTYPE html>
-<html >
-<head>
-  <meta charset="UTF-8">
-  <title>Login form using HTML5 and CSS3</title>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link disabled" href="/logout">Logout</a>
+  </li>
+</ul>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
-
-
-</head>
-
-<body>
-  <body>
-<div class="container">
+<div class = "container">
   <div class = "row">
 
 <!-- User House picks -->
-{{#each houseID}}
+{{#each houseData}}
 <!-- first column -->
-    <div class = "col-4">
+    <div class = "col">
     	<section id="content">
+
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/edit/{{this.id}}">Edit</a>
+          </li>
+        </ul>
 
           <div>
             <br>
     				<img src = "https://s12.favim.com/610/160211/diy-projects-ice-cream-sticks-kid-crafts-diy-kid-crafts-Favim.com-3982097.jpg">
     			</div>
           <div>
-    				<h3 type="text" id="username"> {{HOUSEID.Address}}</h3>
+    				<h3> {{this.id}}</h3>
     			</div>
     			<div>
-    				<h3 type="text" id="username"> {{HOUSEID.Bedrooms}}</h3>
+    				<h3 > {{this.bedrooms}}</h3>
     			</div>
 
     			<div>
-    				<h3 type="password" id="password"> {{Year Built}} </h3>
-    			</div>
-    			<div>
-    				<h3 type="password" id="password"> {{Lot}} </h3>
+    				<h3 >hello  {{this.address}} </h3>
     			</div>
 
 <!-- User comments display  -->
-        {{#if houseID.comment}} <!-- checking if there is user comment in DataBase -->
-          {{#each houseID.comment}}
+        {{#if houseData.comment}} <!-- checking if there is user comment in DataBase -->
+          {{#each houseData}}
             <div id = "wrapper">
               <form action = "/dashboard" method = "post">
-                <p id = ""> {{house.comment}} </p>
-                <input type="submit" class = "btn btn-primary">
+                <p> {{house.comment}} </p>
               </form>
             </div><br>
           {{/each}} <!--end of user comment display -->
         {{/if}} <!-- end of checking if there is user comment -->
-
-    		<div class="button">
-          <form action = "/dashboard" method = "post">
-      			<input type="text" placeholder="User Comment" id = "userComment" ></input>
-            <input type="submit" class = "btn btn-primary">
-          </form>
-    		</div><!-- button -->
     	</section><!-- content -->
     </div>  <!--  col number 1 -->
 {{/each}}  <!-- user house picks -->
 
   </div> <!--row -->
 </div><!-- container -->
-
+<!--
 </body>
-</html>
+</html> -->

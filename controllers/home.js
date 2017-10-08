@@ -14,9 +14,9 @@ module.exports = function(app) {
   /**
      * GET Home page.
      */
-  app.get("/", function(req, res) {
-    res.render("index");
-  });
+  // app.get("/", function(req, res) {
+  //   res.render("index");
+  // });
 
   /**
      * GET User page.
@@ -31,7 +31,7 @@ module.exports = function(app) {
       })
       .then(function(houseData) {
 
-        res.render("user", { houseData });
+        res.render("dashboard", { houseData });
       });
   }); //closes get user
 

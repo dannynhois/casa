@@ -5,11 +5,11 @@ require("../config/passport.js")(passport, models.User);
 
 module.exports = function(app) {
   app.get("/signup", function(req, res) {
-    res.render("signup");
+    res.redirect("/");
   });
 
   app.get("/signin", function(req, res) {
-    res.render("signin");
+    res.redirect("/");
   });
 
   app.post(
@@ -17,7 +17,7 @@ module.exports = function(app) {
     passport.authenticate("local-signup", {
       successRedirect: "/dashboard",
 
-      failureRedirect: "/signup"
+      failureRedirect: "/"
     })
   );
   app.post(
@@ -25,12 +25,23 @@ module.exports = function(app) {
     passport.authenticate("local-signin", {
       successRedirect: "/dashboard",
 
-      failureRedirect: "/signin"
+      failureRedirect: "/"
     })
   );
-  // app.get("/dashboard", isLoggedIn, function(req, res) {
-  //   res.render("dashboard");
-  // });
+
+  app.get("/edit/:id", function(req, res) {
+    console.log("***********user Id: "+req.user.id);
+    models.House
+      .findAll({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(function(houseData) {
+
+        res.render("user", {houseData});
+      });
+  }); //closes get user
 
   app.get("/logout", function(req, res) {
     req.session.destroy(function(err) {
