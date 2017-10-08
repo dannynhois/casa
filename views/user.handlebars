@@ -13,6 +13,7 @@
   <div class = "row">
 
 <!-- User House picks -->
+{{#if houseData}}
 {{#each houseData}}
 <!-- first column -->
     <div class = "col">
@@ -42,8 +43,9 @@
 							</form>
 						</div><br>
 					{{/each}} <!--end of user comment display -->
-				{{/if}} <!-- end
+				{{/if}} <!-- end-->
 	{{/each}}
+  {{/if}}
 
 <h2>Add a favorite house</h2>
     <form class="create-update-form" action="/houses" method="POST">

@@ -20,6 +20,7 @@ module.exports = function(app) {
       failureRedirect: "/"
     })
   );
+
   app.post(
     "/signin",
     passport.authenticate("local-signin", {
@@ -28,6 +29,10 @@ module.exports = function(app) {
       failureRedirect: "/"
     })
   );
+
+  app.get("/edit", function(req, res) {
+    res.render("user");
+  });
 
   app.get("/edit/:id", function(req, res) {
     console.log("***********user Id: "+req.user.id);
