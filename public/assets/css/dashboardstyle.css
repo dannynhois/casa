@@ -32,3 +32,15 @@ body {
 #eachHouse{
 	background-color: rgba(220,220,220,0.8);
 }
+
+.housePhoto {
+	width: 80%;
+}
+
+#selectFields{
+	background-color: rgba(220,220,220,0.8);
+}
+
+.row1{
+	margin-top: 50px;
+}
