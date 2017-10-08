@@ -99,9 +99,9 @@ module.exports = function(app) {
 		//this is what we store to database
 		db.User.update({
 			user_choices:stringChoices
-		},where:{
+		},{where:{
 			id:req.user.id
-		}).then(function(dbUser){
+		}}).then(function(dbUser){
 			res.redirect("/dashboard")
 		})
 
