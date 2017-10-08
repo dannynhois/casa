@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "casa",
-    "host": "127.0.0.1",
+    "username": "v7wyycih08hl0uz9",
+    "password": "zttfpwijyt2s4fet",
+    "database": "uctyy8ytuvsnmvjt",
+    "host": "jsk3f4rbvp8ayd7w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
