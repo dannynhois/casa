@@ -31,7 +31,11 @@ module.exports = function(sequelize, Sequelize) {
         type: Sequelize.STRING
 
     },
-    link: {
+    zillowlink: {
+        type: Sequelize.STRING
+
+    },
+    imagelink: {
         type: Sequelize.STRING
 
     },
