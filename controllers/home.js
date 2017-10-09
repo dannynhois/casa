@@ -33,7 +33,14 @@ module.exports = function(app) {
       })
       .then(function(choices) {
         //if we want to add more to the list shown in handlebars, add here
-        houseAttributes = ["address", "zestimate", "sqft", "bedrooms", "link"];
+        houseAttributes = [
+          "address",
+          "zestimate",
+          "sqft",
+          "bedrooms",
+          "zillowlink",
+          "imagelink"
+        ];
         console.log(choices[0].dataValues.user_choices);
 
         if (choices[0].dataValues.user_choices) {
@@ -104,25 +111,27 @@ module.exports = function(app) {
       })
       .then(function() {
         //image scraper
-        scraper(house.link, function(data) {
+        console.log("house link in scraper: ", house.link);
+        scraper.scrape(house.link, function(data) {
           console.log("posted house " + house);
           var images = JSON.stringify(data);
-          db.House.create({
-            UserId: req.user.id,
-            address: house.address,
-            citystatezip: house.citystatezip,
-            zpid: house.zpid,
-            sqft: house.sqft,
-            bedrooms: house.bedrooms,
-            // yearbuilt: house.yearbuilt,
-            zestimate: house.price,
-            link: house.link,
-            imagelink: images
-          });
+          db.House
+            .create({
+              UserId: req.user.id,
+              address: house.address,
+              citystatezip: house.citystatezip,
+              zpid: house.zpid,
+              sqft: house.sqft,
+              bedrooms: house.bedrooms,
+              // yearbuilt: house.yearbuilt,
+              zestimate: house.price,
+              link: house.link,
+              imagelink: images
+            })
+            .then(function(houseData) {
+              res.redirect("/dashboard");
+            });
         });
-      })
-      .then(function(houseData) {
-        res.redirect("/dashboard");
       });
   }); //closes house post
 
