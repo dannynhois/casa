@@ -39,27 +39,12 @@
          <th>Price</th>
          <th>Number of Bedrooms</th>
          <th>Sq Ft</th>
-          
-          {{#if houseData.location}}
-            <th>Location</th>
-         {{/if}}
+          {{#each houseData.list}}
+            
+              <th>{{this}}</th>
+        
+         {{/each}}
 
-        {{#if houseData.remodel}}
-            <th>Remodel Work</th>
-         {{/if}}
-
-         {{#if houseData.schools}}
-            <th>Schools</th>
-         {{/if}}
-         
-         {{#if houseData.features}}
-            <th>Special Features</th>
-         {{/if}}
-
-         {{#if houseData.tax}}
-            <th>Taxes</th>
-         {{/if}}
-         
             <th width="230">Comments</th>
          
       </tr>
@@ -70,6 +55,8 @@
            <td>{{this.zestimate}}</td>
            <td>{{this.bedrooms}}</td>
            <td>{{this.sqft}}</td>
+           <td>{{}}</td>
+           <td>{{}}</td>
            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>
         </tr>
 {{/each}}

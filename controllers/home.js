@@ -50,15 +50,11 @@ module.exports = function(app) {
 			}).then(function(houseData) {
 				// console.log(houseData);
 				// houseData.image: from scraper;
-
-				// for (i=0;i<houseData.length;i++){
-				// 	for (var key in houseData.dataValues){
-				// 		console.log(house.dataValues.key);
-				// 		if (houseData.dataValues.key == null){
-				// 			houseData.dataValues.key = " ";
-				// 		}
-				// 	}
-				// }
+				for(var i = 0 ; i < choicesArray.length ; i++){
+					choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
+				};
+				houseData.list = choicesArray;	
+				
 				
 		    	console.log(houseData);
 		        res.render("dashboard", { houseData });
