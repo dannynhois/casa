@@ -26,107 +26,57 @@
       </form>
     </div>
   </div>
-  <div class="row">
-    <!-- User House picks -->
-    {{#each houseData}}
-    <!-- first column -->
-    <div class="col-4" id="eachHouse">
-      <section id="content">
-        <ul class="nav justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link disabled" href="/edit/{{this.id}}">Edit</a>
-          </li>
-        </ul>
-
-        <div>
-          <br>
-          <img class="housePhoto" src="https://s12.favim.com/610/160211/diy-projects-ice-cream-sticks-kid-crafts-diy-kid-crafts-Favim.com-3982097.jpg">
-        </div>
-        <div>
-          <h3><span>Address:</span> {{this.address}} </h3>
-        </div>
-        <div>
-          <h3><span>Price:</span> {{this.zestimate}}</h3>
-        </div>
-        <div>
-          <h3><span>Sq Ft:</span> {{this.sqft}}</h3>
-        </div>
-        <div>
-          <h3><span>Bedrooms:</span> {{this.bedrooms}}</h3>
-        </div>
-
-        {{#if this.kitchen}}
-        <div>
-          <h3><span>Kitchen:</span> {{this.kitchen}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.garage}}
-        <div>
-          <h3><span>Garage:</span> {{this.garage}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.remodel}}
-        <div>
-          <h3><span>Remodel:</span> {{this.remodel}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.schools}}
-        <div>
-          <h3><span>Schools:</span> {{this.schools}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.study}}
-        <div>
-          <h3><span>Study:</span> {{this.study}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.features}}
-        <div>
-          <h3><span>Features:</span> {{this.features}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.location}}
-        <div>
-          <h3><span>Location:</span> {{this.location}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.tax}}
-        <div>
-          <h3><span>Tax:</span> {{this.tax}}</h3>
-        </div>
-        {{/if}}
-        {{#if this.sizes}}
-        <div>
-          <h3><span>Sizes:</span> {{this.sizes}}</h3>
-        </div>
-        {{/if}}
 
 
-        <!-- User comments display  -->
-        {{#if houseData.comment}}
-        <!-- checking if there is user comment in DataBase -->
-        {{#each houseData}}
-        <div id="wrapper">
-          <form action="/dashboard" method="post">
-             <p><span>Comments:</span> {{house.comment}}</p>
-          </form>
-        </div>
-        <br> {{/each}}
-        <!--end of user comment display -->
-        {{/if}}
-        <!-- end of checking if there is user comment -->
-      </section>
-      <!-- content -->
-    </div>
-    <!--  col number 1 -->
-    {{/each}}
-    <!-- user house picks -->
+<div class="row" id="housesTable">
+<div class="table-users">
+   
+   <table cellspacing="10">
 
+      <tr>
+         <th>House</th>
+         <th>Address</th>
+         <th>Price</th>
+         <th>Number of Bedrooms</th>
+         <th>Sq Ft</th>
+          
+          {{#if houseData.location}}
+            <th>Location</th>
+         {{/if}}
+
+        {{#if houseData.remodel}}
+            <th>Remodel Work</th>
+         {{/if}}
+
+         {{#if houseData.schools}}
+            <th>Schools</th>
+         {{/if}}
+         
+         {{#if houseData.features}}
+            <th>Special Features</th>
+         {{/if}}
+
+         {{#if houseData.tax}}
+            <th>Taxes</th>
+         {{/if}}
+         
+            <th width="230">Comments</th>
+         
+      </tr>
+{{#each houseData}}
+        <tr>
+           <td><img src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt=""></td>
+           <td>{{this.address}}</td>
+           <td>{{this.zestimate}}</td>
+           <td>{{this.bedrooms}}</td>
+           <td>{{this.sqft}}</td>
+           <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>
+        </tr>
+{{/each}}
+     </table>
   </div>
-  <!--row -->
 </div>
-<!-- container -->
-<!--
-</body>
-</html> -->
+   
+
+
 
