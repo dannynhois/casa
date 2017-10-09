@@ -68,8 +68,8 @@ module.exports = function(app) {
 				console.log(houseData);
 				
 				if(req.params.test) {
-					res.json(houseData);
-					
+					console.log('rendering test page');
+					res.render("dashboardcarousel", { houseData });
 				}
 		        res.render("dashboard", { houseData });
 		    });
