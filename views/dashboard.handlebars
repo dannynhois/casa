@@ -30,89 +30,88 @@
   </div>
 
 
-<div class="row" id="housesTable">
-<div class="table-houses">
-   
-   <table cellspacing="10">
+  <div class="row" id="housesTable">
+    <div class="table-houses">
 
-      <tr>
+      <table cellspacing="10">
 
-         <th class="th">House</th>
-         <th class="th">Address</th>
-         <th class="th">Price</th>
-         <th class="th">Number of Bedrooms</th>
-         <th class="th">Sq Ft</th>
-          {{#each houseData.list}}
-            
-              <th class="th">{{this}}</th>
-        
-         {{/each}}
-
-            <th width="230">Comments</th>
-        
-      </tr>
-{{#each houseData}}
         <tr>
-           <td><img src="{{this.imagelink.[0]}}" alt=""></td>
-           {{!-- <td><img src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt=""></td> --}}
-           <td class="td">{{this.address}}</td>
-           <td class="td">{{this.zestimate}}</td>
-           <td class="td">{{this.bedrooms}}</td>
-           <td class="td">{{this.sqft}}</td>
-           <td class="td">{{this.comments}}</td>
 
-           {{!-- modal button --}}
-           <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id="{{this.id}}">Edit</button></td>
-           {{!-- end modal button --}}
-           <td>user input</td>
+          <th class="th">House</th>
+          <th class="th">Address</th>
+          <th class="th">Price</th>
+          <th class="th">Number of Bedrooms</th>
+          <th class="th">Sq Ft</th>
+          {{#each houseData.list}}
+
+          <th class="th">{{this}}</th>
+
+          {{/each}}
+
+          <th width="230">Comments</th>
 
         </tr>
-{{/each}}
-     </table>
-  </div>
-</div>
+        {{#each houseData}}
+        <tr>
+          <td>
+            <img src="{{this.imagelink.[0]}}" alt="">
+          </td>
+          {{!--
+          <td>
+            <img src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="">
+          </td> --}}
+          <td class="td">{{this.address}}</td>
+          <td class="td">{{this.zestimate}}</td>
+          <td class="td">{{this.bedrooms}}</td>
+          <td class="td">{{this.sqft}}</td>
+          <td class="td">{{this.comments}}</td>
 
-{{!-- modal start --}}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="/houses?_method=PUT" id="modalForm">
-          <div class="form-group">
-            <label for="id" class="form-control-label">ID:</label>
-            <input type="text" class="form-control" name="id" id="id" readonly>
-          </div>
-          <div class="form-group">
-            <label for="address" class="form-control-label">Address:</label>
-            <textarea class="form-control" name="address" id="address" readonly></textarea>
-          </div>
-          <div class="form-group">
-            <label for="comment" class="form-control-label">Comment:</label>
-            <textarea class="form-control" name="comments" id="comments"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="modalSubmitButton">Update</button>
+          {{!-- modal button --}}
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id="{{this.id}}">Edit</button>
+          </td>
+          {{!-- end modal button --}}
+          <td>user input</td>
+
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+
+  {{!-- modal start --}}
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="/houses?_method=PUT" id="modalForm">
+            <div class="form-group">
+              <label for="id" class="form-control-label">ID:</label>
+              <input type="text" class="form-control" name="id" id="id" readonly>
+            </div>
+            <div class="form-group">
+              <label for="address" class="form-control-label">Address:</label>
+              <textarea class="form-control" name="address" id="address" readonly></textarea>
+            </div>
+            <div class="form-group">
+              <label for="comment" class="form-control-label">Comment:</label>
+              <textarea class="form-control" name="comments" id="comments"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="modalSubmitButton">Update</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-{{!-- modal end --}}
-
-{{!-- modal buttons --}}
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id="1">Open modal for @mdo</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id=2>Open modal for @fat</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id=3>Open modal for @getbootstrap</button>
-
-
-
+  {{!-- modal end --}}

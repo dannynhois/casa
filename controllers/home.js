@@ -39,9 +39,9 @@ module.exports = function(app) {
           "sqft",
           "bedrooms",
           "zillowlink",
-		  "imagelink",
-		  "comments",
-		  "id"
+          "imagelink",
+          "comments",
+          "id"
         ];
         console.log(choices[0].dataValues.user_choices);
 
@@ -173,12 +173,13 @@ module.exports = function(app) {
 
   //put route for modal call
   app.put("/houses", (req, res) => {
-	db.House.update(req.body,{
-		where: {id: req.body.id}
-	}).then(function(){
-
-		res.redirect("/dashboard");
-	})
+    db.House
+      .update(req.body, {
+        where: { id: req.body.id }
+      })
+      .then(function() {
+        res.redirect("/dashboard");
+      });
     //   res.json(req.body);
   });
 }; //closes module exports
