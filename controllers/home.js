@@ -30,7 +30,7 @@ module.exports = function(app) {
 			attributes:['user_choices']
 		}).then(function(choices){
 			//if we want to add more to the list shown in handlebars, add here
-			houseAttributes = ['address','zestimate','sqft','bedrooms','link'];
+			houseAttributes = ['address','zestimate','sqft','bedrooms','zillowlink','imagelink'];
 			console.log(choices[0].dataValues.user_choices);
 
 			if(choices[0].dataValues.user_choices){
