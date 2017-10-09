@@ -21,7 +21,7 @@ module.exports = function(app) {
   /**
 * GET User page (see all houses). will need to update this to show selected columns
 */
-  app.get("/dashboard", middleware.isLoggedIn, function(req, res) {
+  app.get("/dashboard/:test?", middleware.isLoggedIn, function(req, res) {
     console.log("***********user Id: " + req.user.id);
 
     db.User
@@ -57,13 +57,20 @@ module.exports = function(app) {
 			}).then(function(houseData) {
 				// console.log(houseData);
 				// houseData.image: from scraper;
-				for(var i = 0 ; i < choicesArray.length ; i++){
-					choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
-				};
-				houseData.list = choicesArray;	
+				// for(var i = 0 ; i < choicesArray.length ; i++){
+				// 	choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
+				// };
+				// houseData.list = choicesArray;	
 				
+				houseData.forEach(house=> {
+					house.imagelink = JSON.parse(house.imagelink);
+				})
+				console.log(houseData);
 				
-		    	console.log(houseData);
+				if(req.params.test) {
+					res.json(houseData);
+					
+				}
 		        res.render("dashboard", { houseData });
 		    });
 		});		
