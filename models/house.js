@@ -36,7 +36,8 @@ module.exports = function(sequelize, Sequelize) {
 
     },
     imagelink: {
-        type: Sequelize.STRING
+        // type: Sequelize.STRING
+        type: Sequelize.TEXT
 
     },
     kitchen:{
