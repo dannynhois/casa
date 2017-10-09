@@ -39,7 +39,9 @@ module.exports = function(app) {
           "sqft",
           "bedrooms",
           "zillowlink",
-          "imagelink"
+		  "imagelink",
+		  "comments",
+		  "id"
         ];
         console.log(choices[0].dataValues.user_choices);
 
@@ -49,33 +51,34 @@ module.exports = function(app) {
           houseAttributes.push.apply(houseAttributes, choicesArray);
         }
 
-			db.House.findAll({
-		        where: {
-		            UserId: req.user.id
-		  		},
-				attributes: houseAttributes
-			}).then(function(houseData) {
-				// console.log(houseData);
-				// houseData.image: from scraper;
-				// for(var i = 0 ; i < choicesArray.length ; i++){
-				// 	choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
-				// };
-				// houseData.list = choicesArray;	
-				
-				houseData.forEach(house=> {
-					house.imagelink = JSON.parse(house.imagelink);
-				})
-				console.log(houseData);
-				
-				if(req.params.test) {
-					console.log('rendering test page');
-					res.render("dashboardcarousel", { houseData });
-				}
-		        res.render("dashboard", { houseData });
-		    });
-		});		
-	}); //closes get user
+        db.House
+          .findAll({
+            where: {
+              UserId: req.user.id
+            },
+            attributes: houseAttributes
+          })
+          .then(function(houseData) {
+            // console.log(houseData);
+            // houseData.image: from scraper;
+            // for(var i = 0 ; i < choicesArray.length ; i++){
+            // 	choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
+            // };
+            // houseData.list = choicesArray;
 
+            houseData.forEach(house => {
+              house.imagelink = JSON.parse(house.imagelink);
+            });
+            console.log(houseData);
+
+            if (req.params.test) {
+              console.log("rendering test page");
+              res.render("dashboardcarousel", { houseData });
+            }
+            res.render("dashboard", { houseData });
+          });
+      });
+  }); //closes get user
 
   /**
 * Post Houses page (added house).
@@ -159,4 +162,23 @@ module.exports = function(app) {
         res.redirect("/dashboard");
       });
   }); //closes user post
+
+  //get route for modal call
+  app.get("/api/house/:houseid", (req, res) => {
+    db.House.findById(parseInt(req.params.houseid)).then(house => {
+      console.log(house);
+      res.json(house);
+    });
+  });
+
+  //put route for modal call
+  app.put("/houses", (req, res) => {
+	db.House.update(req.body,{
+		where: {id: req.body.id}
+	}).then(function(){
+
+		res.redirect("/dashboard");
+	})
+    //   res.json(req.body);
+  });
 }; //closes module exports
