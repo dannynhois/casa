@@ -10,7 +10,7 @@
 <div class="container">
   <div class="row" id="addHouse">
     <div id="form">
-      <h2>Add a favorite house</h2>
+      <h3>Add a favorite house</h3>
       <form class="create-update-form" action="/houses" method="POST">
         <div class="form-group">
           <label for="ca">Address:</label>
@@ -29,48 +29,48 @@
 
 
 <div class="row" id="housesTable">
-<div class="table-users">
+<div class="table-houses">
    
    <table cellspacing="10">
 
       <tr>
-         <th>House</th>
-         <th>Address</th>
-         <th>Price</th>
-         <th>Number of Bedrooms</th>
-         <th>Sq Ft</th>
+         <th class="th">House</th>
+         <th class="th">Address</th>
+         <th class="th">Price</th>
+         <th class="th">Bedrooms</th>
+         <th class="th">Sq Ft</th>
           
           {{#if houseData.location}}
-            <th>Location</th>
+            <th class="th">Location</th>
          {{/if}}
 
         {{#if houseData.remodel}}
-            <th>Remodel Work</th>
+            <th class="th">Remodel Work</th>
          {{/if}}
 
          {{#if houseData.schools}}
-            <th>Schools</th>
+            <th class="th">Schools</th>
          {{/if}}
          
          {{#if houseData.features}}
-            <th>Special Features</th>
+            <th class="th">Special Features</th>
          {{/if}}
 
          {{#if houseData.tax}}
-            <th>Taxes</th>
+            <th class="th">Taxes</th>
          {{/if}}
          
-            <th width="230">Comments</th>
+            <th class="th" width="230">Comments</th>
          
       </tr>
 {{#each houseData}}
         <tr>
            <td><img src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt=""></td>
-           <td>{{this.address}}</td>
-           <td>{{this.zestimate}}</td>
-           <td>{{this.bedrooms}}</td>
-           <td>{{this.sqft}}</td>
-           <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>
+           <td class="td">{{this.address}}</td>
+           <td class="td">{{this.zestimate}}</td>
+           <td class="td">{{this.bedrooms}}</td>
+           <td class="td">{{this.sqft}}</td>
+           <td class="td">{{this.comment}}</td>
         </tr>
 {{/each}}
      </table>
