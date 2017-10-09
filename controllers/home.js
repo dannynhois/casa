@@ -30,7 +30,7 @@ module.exports = function(app) {
 			attributes:['user_choices']
 		}).then(function(choices){
 			//if we want to add more to the list shown in handlebars, add here
-			houseAttributes = ['address','zestimate','sqft','bedrooms'];
+			houseAttributes = ['address','zestimate','sqft','bedrooms','link'];
 			console.log(choices[0].dataValues.user_choices);
 
 			if(choices[0].dataValues.user_choices){
@@ -48,8 +48,19 @@ module.exports = function(app) {
 		  		},
 				attributes: houseAttributes
 			}).then(function(houseData) {
-				console.log(houseData);
-		    	
+				// console.log(houseData);
+				// houseData.image: from scraper;
+
+				// for (i=0;i<houseData.length;i++){
+				// 	for (var key in houseData.dataValues){
+				// 		console.log(house.dataValues.key);
+				// 		if (houseData.dataValues.key == null){
+				// 			houseData.dataValues.key = " ";
+				// 		}
+				// 	}
+				// }
+				
+		    	console.log(houseData);
 		        res.render("dashboard", { houseData });
 		    });
 		});		
@@ -105,6 +116,7 @@ module.exports = function(app) {
 * Put Users page (selected values).
 */
 	app.put("/usersettings", middleware.isLoggedIn, function(req,res){
+		console.log(req.body);
 		var userChoices = (Object.keys(req.body));
 		console.log(userChoices);
 		var stringChoices = (userChoices.toString()).replace(/,/g, "-");

@@ -37,7 +37,7 @@ scraper.scape = function(url, cb) {
         // console.log(imgUrl);
         imageLinks.push(imgUrl);
       });
-    //   console.log("imglinks: ", imageLinks);
+      console.log("imglinks: ", imageLinks);
     //call back
     cb(imageLinks);
     }

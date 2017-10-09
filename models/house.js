@@ -31,6 +31,10 @@ module.exports = function(sequelize, Sequelize) {
         type: Sequelize.STRING
 
     },
+    link: {
+        type: Sequelize.STRING
+
+    },
     kitchen:{
       type:Sequelize.STRING
     },
@@ -56,6 +60,9 @@ module.exports = function(sequelize, Sequelize) {
       type:Sequelize.STRING
     },
     sizes:{
+      type:Sequelize.STRING
+    },
+    comments:{
       type:Sequelize.STRING
     }
 
