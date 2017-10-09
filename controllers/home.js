@@ -19,7 +19,7 @@ module.exports = function(app) {
   });
 
   /**
-* GET User page (see all houses). will need to update this to show selected columns
+* GET User page (see all houses).
 */
   app.get("/dashboard/:test?", middleware.isLoggedIn, function(req, res) {
     console.log("***********user Id: " + req.user.id);
@@ -44,7 +44,7 @@ module.exports = function(app) {
           "id"
         ];
         console.log(choices[0].dataValues.user_choices);
-
+		//logs list of choices and creates full list of what will be shown on table
         if (choices[0].dataValues.user_choices) {
           var choicesArray = choices[0].dataValues.user_choices.split("-");
           console.log(choicesArray);
@@ -59,13 +59,21 @@ module.exports = function(app) {
             attributes: houseAttributes
           })
           .then(function(houseData) {
-            // console.log(houseData);
-            // houseData.image: from scraper;
-            // for(var i = 0 ; i < choicesArray.length ; i++){
-            // 	choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
-            // };
-            // houseData.list = choicesArray;
-
+          	//sets a value for null fields so that they are detected as exiting in handlebars
+  			houseData.forEach(house =>{
+  				for (var key in house.dataValues){
+  					if (house.dataValues[key] == null){
+  						house.dataValues[key] = 'user input here';
+  					}
+  				};
+  			});
+  			
+            //adds choicesArray for column names in handlebars
+            for(var i = 0 ; i < choicesArray.length ; i++){
+            	choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
+            };
+            houseData.list = choicesArray;
+            //adds image link to each house in array to display
             houseData.forEach(house => {
               house.imagelink = JSON.parse(house.imagelink);
             });

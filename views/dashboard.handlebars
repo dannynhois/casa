@@ -48,7 +48,7 @@
 
           {{/each}}
 
-          <th width="230">Comments</th>
+          <th class="th" width="230">Comments</th>
 
         </tr>
         {{#each houseData}}
@@ -61,17 +61,48 @@
             <img src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="">
           </td> --}}
           <td class="td">{{this.address}}</td>
-          <td class="td">{{this.zestimate}}</td>
+          <td class="td">${{this.zestimate}}</td>
           <td class="td">{{this.bedrooms}}</td>
           <td class="td">{{this.sqft}}</td>
+          
+          {{#if this.kitchen}}
+          <td class="td">{{this.kitchen}}</td>
+          {{/if}}
+          {{#if this.garage}}
+          <td class="td">{{this.garage}}</td>
+          {{/if}}
+          {{#if this.remodel}}
+          <td class="td">{{this.remodel}}</td>
+          {{/if}}
+          {{#if this.schools}}
+          <td class="td">{{this.schools}}</td>
+          {{/if}}
+          {{#if this.study}}
+          <td class="td">{{this.study}}</td>
+          {{/if}}
+          {{#if this.features}}
+          <td class="td">{{this.features}}</td>
+          {{/if}}
+          {{#if this.location}}
+          <td class="td">{{this.location}}</td>
+          {{/if}}
+          {{#if this.tax}}
+          <td class="td">{{this.tax}}</td>
+          {{/if}}
+          {{#if this.sizes}}
+          <td class="td">{{this.sizes}}</td>
+          {{/if}}
+
+          {{#if this.comments}}
           <td class="td">{{this.comments}}</td>
+          {{/if}}
 
           {{!-- modal button --}}
           <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id="{{this.id}}">Edit</button>
           </td>
           {{!-- end modal button --}}
-          <td>user input</td>
+          
 
         </tr>
         {{/each}}
