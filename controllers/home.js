@@ -70,7 +70,8 @@ module.exports = function(app) {
             // 			houseData.dataValues.key = " ";
             // 		}
             // 	}
-            // }
+			// }
+			houseData.imagelink = JSON.parse(houseData.imagelink);
 
             console.log(houseData);
             res.render("dashboard", { houseData });
