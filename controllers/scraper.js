@@ -2,6 +2,7 @@ var express = require("express");
 var fs = require("fs");
 var request = require("request");
 var cheerio = require("cheerio");
+var _ = require('lodash');
 var app = express();
 
 var scraper = {};
@@ -33,17 +34,16 @@ scraper.scrape = function(url, cb) {
 
       // notice photos has class hip-photo
       // loop through all image url
-      // should change /p_c/ to /p_f/ for larger image
       $(".hip-photo").filter(function() {
         var imgUrl = $(this).attr("href");
-        // console.log(imgUrl);
 
         //added if statement as first image is sometimes null
         if (imgUrl) {
+          imgUrl = _.replace(imgUrl,"p_c","p_f");
           imageLinks.push(imgUrl);
         }
       });
-      // console.log("imglinks: ", imageLinks);
+      
       //call back
       cb(imageLinks);
     }
