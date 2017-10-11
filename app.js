@@ -72,6 +72,7 @@ app.set("view engine", "handlebars");
 require("./controllers/home")(app);
 require("./controllers/authcontroller")(app);
 require("./controllers/comment")(app);
+require("./controllers/apiRoute")(app);
 // const authController = require("./controllers/authcontroller");
 // const userController = require('./controllers/user');
 // const apiController = require('./controllers/api');
