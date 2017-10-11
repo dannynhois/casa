@@ -132,7 +132,7 @@
             {{#each houseData.lowerlist}}
               <div class="form-group">
               <label for="{{this}}" class="form-control-label">{{this}}</label>
-              <textarea class="form-control" name="{{this}}" id="{{this}}">{{houseData.this}}</textarea>
+              <textarea class="form-control" name="{{this}}" id="{{this}}">{{lookup ../houseData this}}</textarea>
               
             </div>
 

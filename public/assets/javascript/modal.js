@@ -27,7 +27,7 @@ $("#exampleModal").on("show.bs.modal", function(event) {
     modal.find("#id").val(house.id);
     modal.find("#address").val(house.address);
     modal.find("#comments").val(house.comments);
-    loop
+    
 
   });
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).

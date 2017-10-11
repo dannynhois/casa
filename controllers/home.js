@@ -23,7 +23,7 @@ module.exports = function(app) {
 */
   app.get("/dashboard/:test?", middleware.isLoggedIn, function(req, res) {
     console.log("***********user Id: " + req.user.id);
-
+    var choicesArray = [];
     db.User
       .findAll({
         where: {
@@ -46,7 +46,7 @@ module.exports = function(app) {
         console.log(choices[0].dataValues.user_choices);
 		//logs list of choices and creates full list of what will be shown on table
         if (choices[0].dataValues.user_choices) {
-          var choicesArray = choices[0].dataValues.user_choices.split("-");
+          choicesArray = choices[0].dataValues.user_choices.split("-");
           console.log(choicesArray);
           houseAttributes.push.apply(houseAttributes, choicesArray);
         }
@@ -67,6 +67,15 @@ module.exports = function(app) {
   					}
   				};
   			});
+
+  			var selectedFields = {};
+  			for (var key in houseData.dataValues){
+  				if (choicesArray.includes(key)){
+  					selectedFields.key = houseData.dataValues[key]
+  				}
+  			}
+  			houseData.selectedObject = selectedFields;
+  			console.log("selectedFields: "+selectedFields);
   			
             //adds choicesArray for column names in handlebars
             houseData.lowerlist = choicesArray;
