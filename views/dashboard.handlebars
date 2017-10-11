@@ -40,15 +40,13 @@
           <th class="th">House</th>
           <th class="th">Address</th>
           <th class="th">Price</th>
-          <th class="th">Number of Bedrooms</th>
+          <th class="th">Bedrooms</th>
           <th class="th">Sq Ft</th>
           {{#each houseData.list}}
-
-          <th class="th">{{this}}</th>
-
+            <th class="th">{{this}}</th>
           {{/each}}
 
-          <th class="th" width="230">Comments</th>
+          <th class="th"  width="230">Comments</th>
 
         </tr>
         {{#each houseData}}
@@ -65,6 +63,7 @@
           <td class="td">{{this.bedrooms}}</td>
           <td class="td">{{this.sqft}}</td>
           
+
           {{#if this.kitchen}}
           <td class="td">{{this.kitchen}}</td>
           {{/if}}

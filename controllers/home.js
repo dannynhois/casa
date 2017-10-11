@@ -63,7 +63,7 @@ module.exports = function(app) {
   			houseData.forEach(house =>{
   				for (var key in house.dataValues){
   					if (house.dataValues[key] == null){
-  						house.dataValues[key] = 'user input here';
+  						house.dataValues[key] = '  ';
   					}
   				};
   			});
@@ -168,8 +168,12 @@ module.exports = function(app) {
       )
       .then(function(dbUser) {
         res.redirect("/dashboard");
+  
+        
       });
   }); //closes user post
+
+
 
   //get route for modal call
   app.get("/api/house/:houseid", (req, res) => {

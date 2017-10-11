@@ -3,9 +3,22 @@ $("#exampleModal").on("show.bs.modal", function(event) {
   var recipient = button.data("house-id"); // Extract info from data-* attributes
   var address;
 
+
+
   $.get("/api/house/" + recipient, function(house) {
     console.log(house);
     address = house.address;
+    Object.keys(house).forEach(column => {
+      console.log("column name: ", column, "value: ", house[column]);
+
+    })
+
+    $.get("api/user/"+ house.UserId, function(user){
+      console.log(user);
+      //user choice into array
+      //loop through array
+      // house[userchoice[i]] = value for user specified columns
+    })
 
     //update modal
     var modal = $("#exampleModal");
@@ -14,6 +27,8 @@ $("#exampleModal").on("show.bs.modal", function(event) {
     modal.find("#id").val(house.id);
     modal.find("#address").val(house.address);
     modal.find("#comments").val(house.comments);
+    loop
+
   });
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
