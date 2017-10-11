@@ -129,6 +129,14 @@
               <label for="address" class="form-control-label">Address:</label>
               <textarea class="form-control" name="address" id="address" readonly></textarea>
             </div>
+            {{#each houseData.lowerlist}}
+              <div class="form-group">
+              <label for="{{this}}" class="form-control-label">{{this}}</label>
+              <textarea class="form-control" name="{{this}}" id="{{this}}">{{houseData.this}}</textarea>
+              
+            </div>
+
+            {{/each}}
             <div class="form-group">
               <label for="comment" class="form-control-label">Comment:</label>
               <textarea class="form-control" name="comments" id="comments"></textarea>

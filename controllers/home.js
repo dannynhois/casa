@@ -69,6 +69,7 @@ module.exports = function(app) {
   			});
   			
             //adds choicesArray for column names in handlebars
+            houseData.lowerlist = choicesArray;
             for(var i = 0 ; i < choicesArray.length ; i++){
             	choicesArray[i] = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
             };
