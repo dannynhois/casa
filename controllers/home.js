@@ -171,14 +171,6 @@ module.exports = function(app) {
       });
   }); //closes user post
 
-  //get route for modal call
-  app.get("/api/house/:houseid", (req, res) => {
-    db.House.findById(parseInt(req.params.houseid)).then(house => {
-      console.log(house);
-      res.json(house);
-    });
-  });
-
   //put route for modal call
   app.put("/houses", (req, res) => {
     db.House
