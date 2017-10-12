@@ -10,23 +10,26 @@ $("#exampleModal").on("show.bs.modal", function(event) {
     address = house.address;
     Object.keys(house).forEach(column => {
       console.log("column name: ", column, "value: ", house[column]);
-
-    })
-
-    $.get("api/user/"+ house.UserId, function(user){
-      console.log(user);
-      //user choice into array
-      //loop through array
-      // house[userchoice[i]] = value for user specified columns
-    })
+    });
+    var userChoice = house.User.user_choices;
+    choicesArray = userChoice.split("-");
+    console.log(choicesArray);
 
     //update modal
-    var modal = $("#exampleModal");
+    // var modal = $("#exampleModal");
+    var modal = $("#modalForm");
     console.log(modal);
     modal.find(".modal-title").text("Update house at " + house.address);
     modal.find("#id").val(house.id);
     modal.find("#address").val(house.address);
     modal.find("#comments").val(house.comments);
+    for (i=0;i<choicesArray.length;i++){
+        var choice = choicesArray[i];
+        //only need this because handlebars ids are 1st letter caps for some reason
+        var upperChoice = choicesArray[i].charAt(0).toUpperCase() + choicesArray[i].substr(1);
+        console.log(house[choice]);
+        modal.find("#"+upperChoice).val(house[choice]);
+      };
     
 
   });
