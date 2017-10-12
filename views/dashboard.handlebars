@@ -1,9 +1,9 @@
-<ul class="nav justify-content-end" id="topLinks">
+<ul class="nav justify-content-end" style = "position: fixed; right: 0;" id="topLinks">
   <li class="nav-item">
-    <a class="nav-link disabled" href="/edit">Edit</a>
+    <a class="nav-link disabled" href="/settings" style = "color: black;">Settings</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="/logout">Logout</a>
+    <a class="nav-link disabled" href="/logout" style = "color: black;">Logout</a>
   </li>
 </ul>
 
@@ -62,7 +62,7 @@
           <td class="td">${{this.zestimate}}</td>
           <td class="td">{{this.bedrooms}}</td>
           <td class="td">{{this.sqft}}</td>
-          
+
 
           {{#if this.kitchen}}
           <td class="td">{{this.kitchen}}</td>
@@ -101,7 +101,7 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id="{{this.id}}">Edit</button>
           </td>
           {{!-- end modal button --}}
-          
+
 
         </tr>
         {{/each}}
