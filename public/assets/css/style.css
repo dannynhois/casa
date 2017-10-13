@@ -1,6 +1,8 @@
 
 .container {
-    margin: 0px !important;
+    /*margin: 0px !important;*/
+    margin: -16px;
+    padding: 17px;
 }
 
 .section1 {
@@ -10,7 +12,7 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    margin-right: -10px !important;
+    
 }
 
 #homeRow {
