@@ -13,7 +13,9 @@ module.exports = function(app) {
     app.get("/", function(req, res) {
         res.render("index");
     });
-
+    /**
+     * GET Home page.
+     */
     app.get("/settings", function(req, res) {
         res.render("settings");
     });
@@ -197,4 +199,15 @@ module.exports = function(app) {
             });
         //   res.json(req.body);
     });
+
+    app.delete("/houses/:id",(req,res) => {
+    	console.log()
+    	db.House.destroy({
+    		where:{
+    			id:req.params.id
+    		}
+    	}).then(function(dbHouse){
+    		res.redirect("/dashboard");
+    	})
+    })
 }; //closes module exports
