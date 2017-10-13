@@ -25,13 +25,13 @@
             </form>
         </div>
     </div>
-<<<<<<< HEAD
+
     <div class="row" id="housesTable">
         <div class="table-houses">
             <table cellspacing="10">
                 <tr>
                     <th class="th">House</th>
-                    <th class="th">Address</th>
+                    <th class="th" id=address>Address</th>
                     <th class="th">Price</th>
                     <th class="th">Bedrooms</th>
                     <th class="th">Sq Ft</th>
@@ -45,11 +45,11 @@
                     <td>
                         <img src="{{this.imagelink.[0]}}" alt="">
                     </td>
-                    {{!--
-                    <td>
-                        <img src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="">
-                    </td> --}}
-                    <td class="td">{{this.address}}</td>
+                    <td class="td">
+                        <a href = "{{this.link}}">
+                        {{this.address}}
+                        </a>
+                    </td>
                     <td class="td">${{this.zestimate}}</td>
                     <td class="td">{{this.bedrooms}}</td>
                     <td class="td">{{this.sqft}}</td>

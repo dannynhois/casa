@@ -124,6 +124,7 @@ module.exports = function(app) {
                 house.bedrooms = resultsString[0].bedrooms;
                 house.link = resultsString[0].links[0].homedetails[0];
                 console.log("call 1" + JSON.stringify(house));
+
             })
             .then(function() {
                 //image scraper
@@ -131,6 +132,9 @@ module.exports = function(app) {
                 scraper.scrape(house.link, function(data) {
                     console.log("posted house " + house);
                     var images = JSON.stringify(data);
+                    var zPrice = parseInt(house.price);
+                    var zPriceFormat= zPrice.toLocaleString();
+                    console.log("********** "+zPriceFormat);
                     db.House
                         .create({
                             UserId: req.user.id,
@@ -140,11 +144,12 @@ module.exports = function(app) {
                             sqft: house.sqft,
                             bedrooms: house.bedrooms,
                             // yearbuilt: house.yearbuilt,
-                            zestimate: house.price,
+                            zestimate: zPriceFormat,
                             link: house.link,
                             imagelink: images
                         })
                         .then(function(houseData) {
+                        	console.log("*********Line 149: "+houseData)
                             res.redirect("/dashboard");
                         });
                 });
