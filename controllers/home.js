@@ -135,6 +135,7 @@ module.exports = function(app) {
                     var zPrice = parseInt(house.price);
                     var zPriceFormat= zPrice.toLocaleString();
                     console.log("********** "+zPriceFormat);
+                    console.log(house.link);
                     db.House
                         .create({
                             UserId: req.user.id,
@@ -145,11 +146,12 @@ module.exports = function(app) {
                             bedrooms: house.bedrooms,
                             // yearbuilt: house.yearbuilt,
                             zestimate: zPriceFormat,
-                            link: house.link,
+                            zillowlink: house.link,
                             imagelink: images
                         })
                         .then(function(houseData) {
-                        	console.log("*********Line 149: "+houseData)
+
+                        	console.log("*********Line 149: "+houseData.dataValues)
                             res.redirect("/dashboard");
                         });
                 });
