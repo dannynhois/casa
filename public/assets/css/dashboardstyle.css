@@ -67,3 +67,12 @@ table {
    width: 100%;
    }
 
+#delete{
+	background: #ed5e68;
+}
+
+.custom{
+	width: 55px !important;
+}
+
+
