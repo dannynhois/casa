@@ -1,9 +1,9 @@
-<ul class="nav justify-content-end" style = "position: fixed; right: 0;" id="topLinks">
+<ul class="navbar nav justify-content-end topLinks">
   <li class="nav-item">
-    <a class="nav-link disabled" href="/settings" style = "color: black;">Settings</a>
+    <a class="nav-link" href="/settings">Settings</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="/logout" style = "color: black;">Logout</a>
+    <a class="nav-link" href="/logout">Logout</a>
   </li>
 </ul>
 <div class="container">
@@ -42,7 +42,7 @@
                 </tr>
                 {{#each houseData}}
                 <tr>
-                    <td>
+                    <td class="imageCentered">
                         <img src="{{this.imagelink.[0]}}" alt="">
                     </td>
                     <td class="td">

@@ -1,9 +1,9 @@
-<ul class="nav justify-content-end" id="topLinks">
+<ul class="navbar nav justify-content-end topLinks">
   <li class="nav-item">
-    <a class="nav-link disabled" href="/dashboard" style = "color: black;">Main</a>
+    <a class="nav-link" href="/dashboard">Main</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="/logout" style = "color: black;">Logout</a>
+    <a class="nav-link" href="/logout">Logout</a>
   </li>
 </ul>
 
@@ -12,8 +12,9 @@
 
 <div class="row row1">
   <div class="col"></div>
+  <div class="col"></div>
   <div class="col" id="selectFields">
-    <h2> Select up to 3 house note fields to add to your comparison tool</h2>
+    <h2 id="select"> Select up to 3 note fields to add to your comparison tool.</h2>
       <form action="/usersettings?_method=PUT" method="POST">
       <div class="form-check">
         <label class="form-check-label">
@@ -48,5 +49,6 @@
       <br><br>
     </form>
   </div>
+  <div class="col"></div>
   <div class="col"></div>
 </div>

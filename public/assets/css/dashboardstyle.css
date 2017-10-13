@@ -1,4 +1,8 @@
 
+.nav-link{
+	color: 	#303030;
+}
+
 body {
 	background: url("../images/home.jpg") no-repeat center center fixed;
 	 background-size: cover;
@@ -12,9 +16,11 @@ body {
 	position: relative;
 }
 
-#topLinks{
+.topLinks{
 	font-family: 'Open Sans', sans-serif;
 	background-color: rgba(220,220,220,0.8);
+	position: fixed;
+	right: 0;
 }
 
 #addHouse {
@@ -25,7 +31,7 @@ body {
 	background-color: rgba(220,220,220,0.8);
 }
 
-.row {
+#row1 {
 	background-color: rgba(220,220,220,0.8)
 }
 
@@ -41,6 +47,10 @@ img {
    
 }
 
+#housesTable {
+	background-color: rgba(220,220,220,0.8);
+}
+
 .table-houses {
 	background-color: rgba(220,220,220,0.8),
    	border: 1px solid darken(#398B93, 5%);
@@ -50,6 +60,10 @@ img {
 	margin: 1em auto;
 	overflow: hidden;
    	width: 100%;
+}
+
+.imageCentered{
+	text-align: center;
 }
 
 .td{ 
@@ -67,6 +81,18 @@ img {
 table {
    width: 100%;
    }
+
+
+#selectFields {
+	background-color: rgba(220,220,220,0.8);
+	margin-top: 20px;
+	padding-top: 10px;
+
+}
+
+#select{
+	font-size: 20px;
+}
 
 #delete{
 	background: #ed5e68;
