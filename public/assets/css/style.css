@@ -10,7 +10,7 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    margin-right: 0px !important;
+    margin-right: -10px !important;
 }
 
 #homeRow {
