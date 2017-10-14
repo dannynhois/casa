@@ -21,6 +21,9 @@ module.exports = function(app) {
   app.get("/api/house/", (req, res) => {
     db.House
       .findAll({
+        where: {
+            UserId: req.user.id
+        },
         include: [{
             model:db.User
         }]

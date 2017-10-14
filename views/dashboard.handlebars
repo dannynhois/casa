@@ -133,9 +133,10 @@
 
 {{!-- modal end --}}
 
-<h1> GOOGLE MAPS <h1>
-
+<h1 style = "text-align: center;"> CASA HOUSES </h1>
+<div id = "outtermap">
 <div id="map"> </div>
+</div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script async defer
@@ -144,10 +145,11 @@
 
   <script type = "text/javascript">
 
-  $.get("/api/house/" , function(house) {
+
+  $.get("/api/house", function(house) {
     console.log(house);
 
-
+ //
     var customLabel = {
       restaurant: {
         label: 'R'
@@ -157,7 +159,7 @@
       }
     };
 
-      // function initMap() {
+    if (house.length > 0){
       var map = new google.maps.Map(document.getElementById('map'), {
         center: new google.maps.LatLng(house[0].lat, house[0].lng),
         zoom: 10
@@ -196,8 +198,14 @@
               infoWindow.open(map, marker);
             });
           });
-
-    //  }
+     }
+     else {
+       var map = new google.maps.Map(document.getElementById('map'), {
+         center: new google.maps.LatLng(29.7604, 95.3698),
+         zoom: 1
+       });
+       var infoWindow = new google.maps.InfoWindow;
+     }
  });
 
   </script>

@@ -30,7 +30,7 @@ $("#exampleModal").on("show.bs.modal", function(event) {
         console.log(house[choice]);
         modal.find("#"+upperChoice).val(house[choice]);
       };
-    
+
 
   });
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
