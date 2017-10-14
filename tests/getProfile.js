@@ -6,8 +6,8 @@ const passport = require("passport");
 
 
 const userCredentials = {
-  email: 'cats@cats.com', 
-  password: 'cats'
+  email: 'fake@fakeemail.com', 
+  password: 'fakery'
 }
 
 //login test user
