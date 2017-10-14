@@ -5,6 +5,7 @@ var db = require("../models");
 var Zillow = require("node-zillow");
 var middleware = require("./middleware");
 var scraper = require("./scraper");
+var geocoder = require("geocoder");
 
 module.exports = function(app) {
     /**
@@ -84,6 +85,8 @@ module.exports = function(app) {
                             house.imagelink = JSON.parse(house.imagelink);
                         });
 
+                        //get lat & long for map marker
+
 
                         if (req.params.test) {
                             console.log("rendering test page");
@@ -127,6 +130,13 @@ module.exports = function(app) {
 
             })
             .then(function() {
+            	//lat and lng for google maps
+            	geocoder.geocode( house.address+" "+house.citystatezip, function(err, data) {
+            		console.log("************ geocode "+JSON.stringify(data.results[0].geometry.location));
+            		var lat = data.results[0].geometry.location.lat;
+            		var lng = data.results[0].geometry.location.lng;
+            	
+            	
                 //image scraper
                 console.log("house link in scraper: ", house.link);
                 scraper.scrape(house.link, function(data) {
@@ -147,13 +157,16 @@ module.exports = function(app) {
                             // yearbuilt: house.yearbuilt,
                             zestimate: zPriceFormat,
                             zillowlink: house.link,
-                            imagelink: images
+                            imagelink: images,
+                            lat:lat,
+                            lng:lng
                         })
                         .then(function(houseData) {
 
                         	console.log("*********Line 149: "+houseData.dataValues)
                             res.redirect("/dashboard");
                         });
+                });
                 });
             });
     }); //closes house post

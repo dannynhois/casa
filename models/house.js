@@ -69,6 +69,12 @@ module.exports = function(sequelize, Sequelize) {
     },
     comments:{
       type:Sequelize.STRING
+    },
+    lat:{
+      type:Sequelize.FLOAT
+    },
+    lng:{
+      type:Sequelize.FLOAT
     }
 
   });
