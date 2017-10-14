@@ -151,5 +151,63 @@
     </div>
   </div>
 
+{{!-- modal end --}}
 
-  {{!-- modal end --}}
+
+
+<div id="map"> GOOGLE MAPS</div>
+
+  <script>
+    var customLabel = {
+      restaurant: {
+        label: 'R'
+      },
+      bar: {
+        label: 'B'
+      }
+    };
+
+      function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: new google.maps.LatLng(33.863276, 21.207977),
+        zoom: 12
+      });
+      var infoWindow = new google.maps.InfoWindow;
+
+        // Change this depending on the name of your PHP or XML file
+
+          {{#each houseData}}
+            var id = houseData.id;
+            var name = houseData.name;
+            var address =houseData.address;
+            var type = houseData.type;
+            var point = new google.maps.LatLng(
+                parseFloat(houseData.lat),
+                parseFloat(houseData.lng));
+
+            var infowincontent = document.createElement('div');
+            var strong = document.createElement('strong');
+            strong.textContent = name
+            infowincontent.appendChild(strong);
+            infowincontent.appendChild(document.createElement('br'));
+
+            var text = document.createElement('text');
+            text.textContent = address
+            infowincontent.appendChild(text);
+            var icon = customLabel[type] || {};
+            var marker = new google.maps.Marker({
+              map: map,
+              position: point,
+              label: icon.label
+            });
+            marker.addListener('click', function() {
+              infoWindow.setContent(infowincontent);
+              infoWindow.open(map, marker);
+            });
+          {{/each}}
+      }
+
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmtDv-OXpaNMhFCOGERVot_ytHMFdZ3VI&callback=initMap">
+  </script>
