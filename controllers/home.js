@@ -5,6 +5,7 @@ var db = require("../models");
 var Zillow = require("node-zillow");
 var middleware = require("./middleware");
 var scraper = require("./scraper");
+var geocoder = require("geocoder");
 
 module.exports = function(app) {
     /**
@@ -13,7 +14,9 @@ module.exports = function(app) {
     app.get("/", function(req, res) {
         res.render("index");
     });
-
+    /**
+     * GET Home page.
+     */
     app.get("/settings", function(req, res) {
         res.render("settings");
     });
@@ -82,6 +85,8 @@ module.exports = function(app) {
                             house.imagelink = JSON.parse(house.imagelink);
                         });
 
+                        //get lat & long for map marker
+
 
                         if (req.params.test) {
                             console.log("rendering test page");
@@ -122,13 +127,25 @@ module.exports = function(app) {
                 house.bedrooms = resultsString[0].bedrooms;
                 house.link = resultsString[0].links[0].homedetails[0];
                 console.log("call 1" + JSON.stringify(house));
+
             })
             .then(function() {
+            	//lat and lng for google maps
+            	geocoder.geocode( house.address+" "+house.citystatezip, function(err, data) {
+            		console.log("************ geocode "+JSON.stringify(data.results[0].geometry.location));
+            		var lat = data.results[0].geometry.location.lat;
+            		var lng = data.results[0].geometry.location.lng;
+            	
+            	
                 //image scraper
                 console.log("house link in scraper: ", house.link);
                 scraper.scrape(house.link, function(data) {
                     console.log("posted house " + house);
                     var images = JSON.stringify(data);
+                    var zPrice = parseInt(house.price);
+                    var zPriceFormat= zPrice.toLocaleString();
+                    console.log("********** "+zPriceFormat);
+                    console.log(house.link);
                     db.House
                         .create({
                             UserId: req.user.id,
@@ -138,13 +155,18 @@ module.exports = function(app) {
                             sqft: house.sqft,
                             bedrooms: house.bedrooms,
                             // yearbuilt: house.yearbuilt,
-                            zestimate: house.price,
-                            link: house.link,
-                            imagelink: images
+                            zestimate: zPriceFormat,
+                            zillowlink: house.link,
+                            imagelink: images,
+                            lat:lat,
+                            lng:lng
                         })
                         .then(function(houseData) {
+
+                        	console.log("*********Line 149: "+houseData.dataValues)
                             res.redirect("/dashboard");
                         });
+                });
                 });
             });
     }); //closes house post
@@ -197,4 +219,15 @@ module.exports = function(app) {
             });
         //   res.json(req.body);
     });
+
+    app.delete("/houses/:id",(req,res) => {
+    	console.log()
+    	db.House.destroy({
+    		where:{
+    			id:req.params.id
+    		}
+    	}).then(function(dbHouse){
+    		res.redirect("/dashboard");
+    	})
+    })
 }; //closes module exports

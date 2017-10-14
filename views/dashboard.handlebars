@@ -1,163 +1,153 @@
-<ul class="nav justify-content-end" style = "position: fixed; right: 0;" id="topLinks">
+<ul class="navbar nav justify-content-end topLinks">
   <li class="nav-item">
-    <a class="nav-link disabled" href="/settings" style = "color: black;">Settings</a>
+    <a class="nav-link" href="/settings">Settings</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="/logout" style = "color: black;">Logout</a>
+    <a class="nav-link" href="/logout">Logout</a>
   </li>
 </ul>
-
-
-
 <div class="container">
-  <div class="row" id="addHouse">
-    <div id="form">
-      <h3>Add a favorite house</h3>
-      <form class="create-update-form" action="/houses" method="POST">
-        <div class="form-group">
-          <label for="ca">Address:</label>
-          <input type="text" id="address" name="address">
-          <label for="ca">City:</label>
-          <input type="text" id="city" name="city">
-          <label for="ca">State:</label>
-          <input type="text" id="state" name="state">
-          <label for="ca">Zip:</label>
-          <input type="text" id="zip" name="zip">
+    <div class="row" id="addHouse">
+        <div id="form">
+            <h3>Add a favorite house</h3>
+            <form class="create-update-form" action="/houses" method="POST">
+                <div class="form-group">
+                    <label for="ca">Address:</label>
+                    <input type="text" id="address" name="address">
+                    <label for="ca">City:</label>
+                    <input type="text" id="city" name="city">
+                    <label for="ca">State:</label>
+                    <input type="text" id="state" name="state">
+                    <label for="ca">Zip:</label>
+                    <input type="text" id="zip" name="zip">
+                </div>
+                <button type="submit">Add House</button>
+            </form>
         </div>
-        <button type="submit">Add House</button>
-      </form>
     </div>
-  </div>
+
+    <div class="row" id="housesTable">
+        <div class="table-houses">
+            <table cellspacing="10">
+                <tr>
+                    <th class="th">House</th>
+                    <th class="th" id=address>Address</th>
+                    <th class="th">Price</th>
+                    <th class="th">Bedrooms</th>
+                    <th class="th">Sq Ft</th>
+                    {{#each houseData.list}}
+                    <th class="th">{{this}}</th>
+                    {{/each}}
+                    <th class="th" >Comments</th>
+                </tr>
+                {{#each houseData}}
+                <tr>
+                    <td class="imageCentered">
+                        <img src="{{this.imagelink.[0]}}" alt="">
+                    </td>
+                    <td class="td">
+                        <a href = "{{this.zillowlink}}">
+                        {{this.address}}
+                        </a>
+                    </td>
+                    <td class="td">${{this.zestimate}}</td>
+                    <td class="td">{{this.bedrooms}}</td>
+                    <td class="td">{{this.sqft}}</td>
+                    {{#if this.kitchen}}
+                    <td class="td">{{this.kitchen}}</td>
+                    {{/if}} {{#if this.garage}}
+                    <td class="td">{{this.garage}}</td>
+                    {{/if}} {{#if this.remodel}}
+                    <td class="td">{{this.remodel}}</td>
+                    {{/if}} {{#if this.schools}}
+                    <td class="td">{{this.schools}}</td>
+                    {{/if}} {{#if this.study}}
+                    <td class="td">{{this.study}}</td>
+                    {{/if}} {{#if this.features}}
+                    <td class="td">{{this.features}}</td>
+                    {{/if}} {{#if this.location}}
+                    <td class="td">{{this.location}}</td>
+                    {{/if}} {{#if this.tax}}
+                    <td class="td">{{this.tax}}</td>
+                    {{/if}} {{#if this.sizes}}
+                    <td class="td">{{this.sizes}}</td>
+                    {{/if}} {{#if this.comments}}
+                    <td class="td">{{this.comments}}</td>
+                    {{/if}} {{!-- modal button --}}
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm custom" data-toggle="modal" data-target="#exampleModal" data-house-id="{{this.id}}">Edit</button>
+                        <form action="/houses/{{this.id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <button type="submit" class="btn btn-danger btn-sm custom" id="delete">Delete</button>
+                    </form>
+                    </td>
+                    {{!-- end modal button --}}
 
 
-  <div class="row" id="housesTable">
-    <div class="table-houses">
-
-      <table cellspacing="10">
-
-        <tr>
-
-          <th class="th">House</th>
-          <th class="th">Address</th>
-          <th class="th">Price</th>
-          <th class="th">Bedrooms</th>
-          <th class="th">Sq Ft</th>
-          {{#each houseData.list}}
-            <th class="th">{{this}}</th>
-          {{/each}}
-
-          <th class="th"  width="230">Comments</th>
-
-        </tr>
-        {{#each houseData}}
-        <tr>
-          <td>
-            <img src="{{this.imagelink.[0]}}" alt="">
-          </td>
-          {{!--
-          <td>
-            <img src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="">
-          </td> --}}
-          <td class="td">{{this.address}}</td>
-          <td class="td">${{this.zestimate}}</td>
-          <td class="td">{{this.bedrooms}}</td>
-          <td class="td">{{this.sqft}}</td>
-
-
-          {{#if this.kitchen}}
-          <td class="td">{{this.kitchen}}</td>
-          {{/if}}
-          {{#if this.garage}}
-          <td class="td">{{this.garage}}</td>
-          {{/if}}
-          {{#if this.remodel}}
-          <td class="td">{{this.remodel}}</td>
-          {{/if}}
-          {{#if this.schools}}
-          <td class="td">{{this.schools}}</td>
-          {{/if}}
-          {{#if this.study}}
-          <td class="td">{{this.study}}</td>
-          {{/if}}
-          {{#if this.features}}
-          <td class="td">{{this.features}}</td>
-          {{/if}}
-          {{#if this.location}}
-          <td class="td">{{this.location}}</td>
-          {{/if}}
-          {{#if this.tax}}
-          <td class="td">{{this.tax}}</td>
-          {{/if}}
-          {{#if this.sizes}}
-          <td class="td">{{this.sizes}}</td>
-          {{/if}}
-
-          {{#if this.comments}}
-          <td class="td">{{this.comments}}</td>
-          {{/if}}
-
-          {{!-- modal button --}}
-          <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-house-id="{{this.id}}">Edit</button>
-          </td>
-          {{!-- end modal button --}}
-
-
-        </tr>
-        {{/each}}
-      </table>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div id="map_canvas"></div>
     </div>
-  </div>
-
-  {{!-- modal start --}}
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit house info</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    {{!-- modal start --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit house info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/houses?_method=PUT" id="modalForm">
+                        <div class="form-group">
+                            <label for="id" class="form-control-label">ID:</label>
+                            <input type="text" class="form-control" name="id" id="id" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="form-control-label">Address:</label>
+                            <textarea class="form-control" name="address" id="address" readonly></textarea>
+                        </div>
+                        {{#each houseData.lowerlist}}
+                        <div class="form-group">
+                            <label for="{{this}}" class="form-control-label">{{this}}</label>
+                            <textarea class="form-control" name="{{this}}" id="{{this}}">{{lookup ../houseData this}}</textarea>
+                        </div>
+                        {{/each}}
+                        <div class="form-group">
+                            <label for="comment" class="form-control-label">Comment:</label>
+                            <textarea class="form-control" name="comments" id="comments"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="modalSubmitButton">Update</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <form method="POST" action="/houses?_method=PUT" id="modalForm">
-            <div class="form-group">
-              <label for="id" class="form-control-label">ID:</label>
-              <input type="text" class="form-control" name="id" id="id" readonly>
-            </div>
-            <div class="form-group">
-              <label for="address" class="form-control-label">Address:</label>
-              <textarea class="form-control" name="address" id="address" readonly></textarea>
-            </div>
-
-            {{#each houseData.lowerlist}}
-              <div class="form-group">
-              <label for="{{this}}" class="form-control-label">{{this}}</label>
-              <textarea class="form-control" name="{{this}}" id="{{this}}">{{lookup ../houseData this}}</textarea>
-            </div>
-            {{/each}}
-
-            <div class="form-group">
-              <label for="comment" class="form-control-label">Comment:</label>
-              <textarea class="form-control" name="comments" id="comments"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="modalSubmitButton">Update</button>
-        </div>
-      </div>
     </div>
   </div>
 
 {{!-- modal end --}}
 
+<h1> GOOGLE MAPS <h1>
+
+<div id="map"> </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmtDv-OXpaNMhFCOGERVot_ytHMFdZ3VI&callback=initMap">
+  </script>
+
+  <script type = "text/javascript">
+
+  $.get("/api/house/" , function(house) {
+    console.log(house);
 
 
-<div id="map"> GOOGLE MAPS</div>
-
-  <script>
     var customLabel = {
       restaurant: {
         label: 'R'
@@ -167,23 +157,23 @@
       }
     };
 
-      function initMap() {
+      // function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(33.863276, 21.207977),
-        zoom: 12
+        center: new google.maps.LatLng(house[0].lat, house[0].lng),
+        zoom: 10
       });
       var infoWindow = new google.maps.InfoWindow;
 
         // Change this depending on the name of your PHP or XML file
 
-          {{#each houseData}}
-            var id = houseData.id;
-            var name = houseData.name;
-            var address =houseData.address;
-            var type = houseData.type;
+        house.forEach(function (house) {
+            var id = house.id;
+            var name = house.User.firstname;
+            var address = house.address;
+            var type = "H";
             var point = new google.maps.LatLng(
-                parseFloat(houseData.lat),
-                parseFloat(houseData.lng));
+                parseFloat(house.lat),
+                parseFloat(house.lng));
 
             var infowincontent = document.createElement('div');
             var strong = document.createElement('strong');
@@ -200,14 +190,14 @@
               position: point,
               label: icon.label
             });
+
             marker.addListener('click', function() {
               infoWindow.setContent(infowincontent);
               infoWindow.open(map, marker);
             });
-          {{/each}}
-      }
+          });
 
-  </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmtDv-OXpaNMhFCOGERVot_ytHMFdZ3VI&callback=initMap">
+    //  }
+ });
+
   </script>
